@@ -86,3 +86,30 @@ body {
   color: black;
   text-decoration: none;
 }
+
+.extras #extras_elements {
+  overflow: hidden;
+}
+
+.extras #extras_elements ul {
+  margin: 0;
+  padding: 0;
+}
+
+.extras #extras_elements ul li {
+  list-style: none;
+  float: left;
+}
+
+.extras #extras_elements ul li:hover .extra_title {
+  display: block;
+}
+
+.extras .extra_title {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
