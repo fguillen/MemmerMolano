@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Template &middot; Bootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+    </style>
+    <link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container-narrow">
+
+      <div class="masthead">
+        <h3 class="muted">Se buscan escritores y lectores</h3>
+      </div>
+
+      <hr>
+
+      <div class="jumbotron">
+        <h1><small style="vertical-align: top; margin-right: -19px;">the</small> GalaxyDigest</h1>
+        <p class="lead">
+          Estamos contruyendo una plataforma independiente de pago por suscripción.
+        </p>
+        <div class="row-fluid marketing">
+          <div class="span6">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3>Soy escritor</h3>
+                <p>
+                  Y estoy dispuesto
+                  a generar contenido de una calidad especial y permitir que mis seguidores
+                  apoyen económicamente mi trabajo.
+                </p>
+                <p><a data-toggle="modal" href="#writer_popup" class="btn btn-success">Manterne informado</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="span6">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3>Soy lector</h3>
+                <p>
+                  Y estoy dispuesto a apoyar económicamente a mis escritores favoritos a cambio
+                  de recibir contenido de una calidad especial.
+                </p>
+                <p><a data-toggle="modal" href="#reader_popup" class="btn btn-success">Manterne informado</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row-fluid marketing">
+        <div class="span6">
+          <h4>Liberando escritores independientes</h4>
+          <p>
+            Queremos que continues con tu trabajo, sin censura ni imposiciones de ninguna
+            <i>línea editorial</i> dejando que tus seguidores sean quienes te patrocinen, al fin y
+            al cabo son a los únicos a los que les deberías rendir cuentas.
+          </p>
+        </div>
+
+        <div class="span6" style="text-align:right">
+          <h4>El paraíso de los lectores selectivos</h4>
+          <p>
+            Disfrutamos a diario de fabulosos contenidos creados generosamente por un ejército
+            de escritores, poetas, dibujantes, periodístas, ...
+            Estamos creando herramientas para que les trasmitas tu apoyo y ayudes a continuar con su trabajo.
+          </p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p>♥ Galaxy Digest 2012</p>
+      </div>
+
+      <!-- popups -->
+      <div id="writer_popup" class="modal hide fade">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Soy escritor y me interesa</h3>
+        </div>
+        <div class="modal-body">
+          <p>
+            Nos pondremos en contacto contigo para explicarte lo que estamos
+            construyendo y si te apetece puedas formar parte de nuestra
+            avanzadilla de escritores.
+          </p>
+
+          <form class="form-horizontal">
+            <div class="control-group info">
+              <label class="control-label" for="inputSuccess">Inserta tu email</label>
+              <div class="controls">
+                <input type="text" class="span3">
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary">Mantenerme informado</button>
+        </div>
+      </div> <!-- writer_popup -->
+
+      <div id="reader_popup" class="modal hide fade">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Soy lector y me interesa</h3>
+        </div>
+        <div class="modal-body">
+          <p>
+            Nos pondremos en contacto contigo para explicarte lo que estamos
+            construyendo y para que nos ayudes a entender cómo los lectores
+            quieren apoyar a sus escritores favoritos.
+          </p>
+
+          <form class="form-horizontal">
+            <div class="control-group info">
+              <label class="control-label" for="inputSuccess">Inserta tu email</label>
+              <div class="controls">
+                <input type="text" class="span3">
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary">Mantenerme informado</button>
+        </div>
+      </div> <!-- writer_popup -->
+
+    </div> <!-- /container -->
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./bootstrap/js/jquery.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+
+  </body>
+</html>

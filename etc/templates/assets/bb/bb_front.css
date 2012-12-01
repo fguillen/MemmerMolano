@@ -1,0 +1,88 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Nivo Slider */
+.theme-default .nivo-controlNav {
+  text-align: left;
+  padding: 0px 0;
+}
+
+.container {
+  padding: 0;
+  margin: 100px 0;
+  width: 990px;
+  overflow: hidden;
+}
+
+#menu {
+  width: 350px;
+  float: left;
+}
+
+#menu > ul {
+  padding: 0;
+  margin-left: 100px;
+  font-size: 18px;
+}
+
+#menu > ul ul {
+  padding: 0;
+  margin-left: 36px;
+  font-size: 14px;
+}
+
+#menu li {
+  margin: 0;
+  list-style: none;
+}
+
+#menu a {
+  color: #707070;
+  text-decoration: none;
+}
+
+#main {
+  width: 640px;
+  float: left;
+}
+
+.element h1 {
+  font-size: 18px;
+  font-weight: normal;
+  text-align: right;
+}
+
+.element #gallery {
+}
+
+.element #related_links {
+  text-align: right;
+  text-transform: uppercase;
+  color: #707070;
+  margin-top: 10px;
+}
+
+.element #related_links a {
+  color: #707070;
+}
+
+.element #text {
+  margin-top: 37px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  color: #707070;
+}
+
+#footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid black;
+  font-size: 14px;
+  color: #707070;
+}
+
+#footer a {
+  color: black;
+  text-decoration: none;
+}
