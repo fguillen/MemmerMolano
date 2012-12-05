@@ -1,0 +1,13 @@
+<% title "Edit Admin/Performance" %>
+
+<%= form_for [:admin, @performance] do |f| %>
+  <%= f.error_messages %>
+  <%= f.text_field :title, :class => "span12" %>
+  <%= f.text_area :text, :class => "span12", :rows => "10" %>
+<% end %>
+
+
+<p>
+  <%= link_to "Show", [:admin, @performance] %> |
+  <%= link_to "View All", admin_performances_path %>
+</p>

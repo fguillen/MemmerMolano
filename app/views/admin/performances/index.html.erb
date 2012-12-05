@@ -1,0 +1,24 @@
+<% title "Admin/Performances" %>
+
+<p><%= link_to "New Admin/Performance", new_admin_performance_path, :class => "btn btn-primary" %></p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="span1">#</th>
+      <th class="span7">Title</th>
+      <th class="span2">Created at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @performances.each do |performance| %>
+      <tr>
+        <td><%= performance.id %></td>
+        <td><%= link_to performance.title, [:admin, performance] %></td>
+        <td><%= performance.created_at.to_s(:datedb) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>Click on one of the title to access to the edition mode</p>

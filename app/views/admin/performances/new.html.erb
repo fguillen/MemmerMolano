@@ -1,0 +1,11 @@
+<% title "New Admin/Performance" %>
+
+<%= form_for [:admin, @performance] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+<% end %>
+
+<p><%= link_to "Back to List", admin_performances_path %></p>
