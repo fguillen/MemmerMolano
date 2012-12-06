@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205204520) do
+ActiveRecord::Schema.define(:version => 20121206211544) do
 
   create_table "performances", :force => true do |t|
     t.string   "title",                       :null => false
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(:version => 20121205204520) do
     t.integer  "position",     :default => 0
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "pics", :force => true do |t|
+    t.integer  "performance_id"
+    t.integer  "position"
+    t.string   "thumb_file_name"
+    t.string   "thumb_content_type"
+    t.integer  "thumb_file_size"
+    t.datetime "thumb_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
 end

@@ -1,0 +1,135 @@
+#performance_form .pics .images > ul > li {
+  float: left;
+}
+
+#performance_form .pics {
+  clear: both;
+}
+
+#performance_form .pics .drop-wrapper,
+#performance_form .pics .placeholder,
+#performance_form .pics .item {
+  width: 200px;
+  height: 100px;
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+#performance_form .pics .placeholder{
+  box-sizing: border-box;
+  border: 3px dashed #ccc;
+  float: left;
+}
+
+#performance_form .pics .drop-wrapper {
+  float: left;
+}
+
+#performance_form .pics .drop-wrapper .drop {
+  position: absolute;
+  top: 0;
+  lef: 0;
+  box-sizing: border-box;
+  width: 200px;
+  height: 100px;
+  border: 4px dashed #ccc;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 100;
+}
+
+#performance_form .pics .drop-wrapper .drop-message {
+  position: absolute;
+  top: 0;
+  lef: 0;
+  box-sizing: border-box;
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#performance_form .pics .drop.bbimagesupload-over {
+  border-color: black;
+}
+
+#performance_form .pics .item .image{
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  top: 0;
+  left: 0;
+}
+
+#performance_form .pics .item .state {
+  box-sizing: border-box;
+  width: 200px;
+  height: 25px;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  padding-top: 5px;
+}
+
+#performance_form .pics .item .progress {
+  width: 200px;
+  height: 16px;
+  background-color: transparent;
+  position: absolute;
+  bottom: 0;
+}
+
+#performance_form .pics .item .progress .progress-bar {
+  background: transparent url("/assets/loading.gif") repeat left center;
+  height: 16px;
+  width: 100px;
+}
+
+#performance_form .pics .item.uploading .state {
+  display: none;
+}
+
+#performance_form .pics .item:not(.uploading) .progress {
+  display: none;
+}
+
+#performance_form .pics .item:not(.uploading) .state {
+  display: block;
+}
+#performance_form .pics .item .controls {
+  display: none;
+  width: 17px;
+  height: 17px;
+  padding: 3px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: white;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  position: absolute;
+  right: -7px;
+  top: -7px;
+}
+
+#performance_form .pics .item:hover .controls {
+  display: block;
+}
+
+#performance_form .pics .item .controls img {
+  width: 16px;
+}
+
+#performance_form .pics .item .controls a {
+  color: white;
+  text-decoration: none;
+}

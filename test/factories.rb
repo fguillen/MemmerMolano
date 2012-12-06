@@ -13,4 +13,8 @@ FactoryGirl.define do
     text "Video Text"
     position 0
   end
+
+  factory :pic do
+    association :performance
+  end
 end

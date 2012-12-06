@@ -4,6 +4,7 @@ gem "rails", "3.2.8"
 gem "sqlite3"
 gem "json"
 gem "jquery-rails"
+gem "paperclip", "~> 3.0"
 
 group :development do
   gem "nifty-generators"

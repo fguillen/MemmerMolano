@@ -19,3 +19,4 @@ pickle-email-*.html
 coverage
 /config/app_config.yml
 /config/database.yml
+/public/uploads/

@@ -30,6 +30,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     builder (3.0.4)
+    cocaine (0.4.2)
     erubis (2.7.0)
     factory_girl (4.0.0)
       activesupport (>= 3.0.0)
@@ -50,6 +51,12 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.4.0)
     nifty-generators (0.4.6)
+    paperclip (3.3.1)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.4.0)
+      mime-types
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -97,5 +104,6 @@ DEPENDENCIES
   json
   mocha
   nifty-generators
+  paperclip (~> 3.0)
   rails (= 3.2.8)
   sqlite3

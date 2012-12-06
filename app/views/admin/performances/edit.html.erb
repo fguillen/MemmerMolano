@@ -1,13 +1,55 @@
 <% title "Edit Admin/Performance" %>
 
-<%= form_for [:admin, @performance] do |f| %>
-  <%= f.error_messages %>
-  <%= f.text_field :title, :class => "span12" %>
-  <%= f.text_area :text, :class => "span12", :rows => "10" %>
-<% end %>
+<div id="performance_form">
+  <%= form_for [:admin, @performance] do |f| %>
+    <%= f.error_messages %>
+    <%= f.text_field :title, :class => "span12" %>
+    <%= f.text_area :text, :class => "span12", :rows => "10" %>
+  <% end %>
 
+  <h3>Pics</h3>
+  <script type="text/template" id="template_image">
+    <div class="item {{state}}">
+      <div class="image" style="background-image: url( '{{url}}' )"></div>
+      <div class="controls">
+        <a href="#delete" class="delete"><img src="/assets/delete.png" /></a>
+      </div>
+    </div>
+  </script>
 
-<p>
-  <%= link_to "Show", [:admin, @performance] %> |
-  <%= link_to "View All", admin_performances_path %>
-</p>
+  <script type="text/template" id="template_image_uploading">
+    <div class="item {{state}}">
+      <div class="image" style="background-image: url( '{{file_url}}' )"></div>
+      <div class="progress"><div class="progress-bar" style="width:{{progress}}%"></div></div>
+      <div class="state">{{state}}</div>
+    </div>
+  </script>
+
+  <div class="pics">
+    <div class="list">
+    </div>
+    <div class="drop-wrapper">
+      <div class="drop"></div>
+      <div class="drop-message">Drop image files here</div>
+    </div>
+  </div>
+  <script>
+    $(function(){
+      new BBAssetsUpload({
+        url: "<%= admin_performance_pics_path(@performance) %>",
+        listElement: $("#performance_form .pics .list"),
+        dropElement: $("#performance_form .pics .drop"),
+        assetTemplate: $("#template_image").html(),
+        assetUploadingTemplate: $("#template_image_uploading").html(),
+        maxFileSize: 500,
+        acceptFileTypes: "jpg, jpeg, png",
+        onSuccess: function( asset ) { console.log( "asset", asset ) },
+      });
+    });
+  </script>
+
+  <p>
+    <%= link_to "Show", [:admin, @performance] %> |
+    <%= link_to "View All", admin_performances_path %>
+  </p>
+</div>
