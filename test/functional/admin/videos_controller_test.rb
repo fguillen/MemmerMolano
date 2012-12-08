@@ -42,7 +42,7 @@ class Admin::VideosControllerTest < ActionController::TestCase
       )
     end
 
-    assert_template "/admin/performances/edit"
+    assert_redirected_to edit_admin_performance_path(performance)
     assert_not_nil(flash[:alert])
   end
 
