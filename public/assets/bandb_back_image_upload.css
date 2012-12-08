@@ -1,16 +1,33 @@
-#performance_form .pics .images > ul > li {
+#performance_form .pics .list > ul {
+  margin: 0;
+}
+
+#performance_form .pics .list > ul > li {
   float: left;
+  list-style: none;
 }
 
 #performance_form .pics {
   clear: both;
+  overflow: hidden;
+}
+
+/* size */
+#performance_form .pics .item,
+#performance_form .pics .drop-wrapper,
+#performance_form .pics .drop-wrapper .drop,
+#performance_form .pics .drop-wrapper .drop-message,
+#performance_form .pics .item .image,
+#performance_form .pics .item .state,
+#performance_form .pics .item .progress,
+#performance_form .pics .placeholder {
+  width: 282px;
+  height: 188px;
 }
 
 #performance_form .pics .drop-wrapper,
 #performance_form .pics .placeholder,
 #performance_form .pics .item {
-  width: 200px;
-  height: 100px;
   position: relative;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -31,8 +48,6 @@
   top: 0;
   lef: 0;
   box-sizing: border-box;
-  width: 200px;
-  height: 100px;
   border: 4px dashed #ccc;
   text-align: center;
   font-size: 24px;
@@ -45,8 +60,6 @@
   top: 0;
   lef: 0;
   box-sizing: border-box;
-  width: 200px;
-  height: 100px;
   text-align: center;
   padding: 20px 10px;
   font-size: 24px;
@@ -57,19 +70,16 @@
   border-color: black;
 }
 
-#performance_form .pics .item .image{
+#performance_form .pics .item .image {
   background-size: cover;
   background-position: center;
   position: absolute;
-  width: 200px;
-  height: 100px;
   top: 0;
   left: 0;
 }
 
 #performance_form .pics .item .state {
   box-sizing: border-box;
-  width: 200px;
   height: 25px;
   background-color: black;
   position: absolute;
@@ -81,7 +91,6 @@
 }
 
 #performance_form .pics .item .progress {
-  width: 200px;
   height: 16px;
   background-color: transparent;
   position: absolute;

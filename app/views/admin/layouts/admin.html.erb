@@ -26,17 +26,14 @@
     <!-- BandB -->
     <link href="/assets/bandb_back.css" rel="stylesheet">
     <link href="/assets/bandb_back_image_upload.css" rel="stylesheet">
-    <script>
-      _.templateSettings = {
-         interpolate : /\{\{([\s\S]+?)\}\}/g
-      };
-    </script>
+    <script src="/assets/bandb_back.js" type="text/javascript" charset="utf-8"></script>
 
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
 
   <body>
+    <div id="loading"><img src="/assets/spinner_min.gif" /></div>
 
     <div class="navbar navbar-inverse">
       <div class="navbar-inner">
