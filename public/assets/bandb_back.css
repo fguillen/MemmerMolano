@@ -18,6 +18,11 @@ body {
   margin-bottom: 20px;
 }
 
+.video_extras .thumbnail > img {
+  margin-left: 9px;
+  margin-top: 9px;
+}
+
 .modal.video{
   width: 668px;
   margin-left: -334px; /* - width/2 */
