@@ -1,0 +1,13 @@
+<div class="element video">
+  <h1><%= @performance.title %> – Extras – <%= @video.title %></h1>
+  <div id="video">
+    <%= @video.script.html_safe %>
+  </div>
+  <div id="related_links">
+    <%= link_to "Link to performance", [:front, @performance] %> |
+    <%= link_to "Link to extras", extras_front_performance_path(@performance) %>
+  </div>
+  <div id="text">
+    <%= @video.text.to_md %>
+  </div>
+</div>

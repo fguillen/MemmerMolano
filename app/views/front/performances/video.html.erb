@@ -1,0 +1,17 @@
+<div class="element video">
+  <h1><%= @performance.title %> – Video</h1>
+  <div id="video">
+    <%= @performance.video_script.html_safe %>
+  </div>
+  <div id="related_links">
+    <%= link_to "Link to performance", [:front, @performance] %> |
+    <%= link_to "Link to extras", extras_front_performance_path(@performance) %>
+  </div>
+  <div id="text">
+    <p>
+      Duration: 20’ <br />
+      Kaskadenkondesator. Basel.  <br />
+      January 2011.
+    </p>
+  </div>
+</div>

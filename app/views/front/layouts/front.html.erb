@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title><%= content_for?(:title) ? yield(:title) : "BedAndBreakfast" %></title>
+
+    <!-- Nivo Slider -->
+    <script src="/assets/bootstrap/js/jquery.js"></script>
+    <script src="/assets/nivo-slider/jquery.nivo.slider.js"></script>
+    <link href="/assets/nivo-slider/themes/default/default.css" type="text/css" media="screen" rel="stylesheet"/>
+    <link href="/assets/nivo-slider/nivo-slider.css" type="text/css" media="screen" rel="stylesheet"/>
+
+    <!-- BandB -->
+    <link href="/assets/reset.css" rel="stylesheet">
+    <link href="/assets/bandb_front.css" rel="stylesheet">
+    <script src="/assets/bandb_front.js" type="text/javascript" charset="utf-8"></script>
+
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div id="menu">
+        <ul>
+          <li>Performance
+            <ul>
+              <% Performance.by_position.each do |performance| %>
+                <li class="<%= "active" if performance == @performance %>"><%= link_to performance.title, [:front, performance] %></li>
+              <% end %>
+            </ul>
+          </li>
+
+          <li>Video
+            <ul>
+              <% Performance.by_position.map { |e| e.videos.by_position }.flatten.each do |video| %>
+                <li class="<%= "active" if video == @video %>"><%= link_to video.title, [:front, @performance, video] %></li>
+              <% end %>
+            </ul>
+          </li>
+
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+
+      <div id="main">
+        <div id="content">
+          <%= yield %>
+        </div>
+
+        <div id="footer">
+          Contact: <a href="#">hello@bedandbreakfast.perf</a>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

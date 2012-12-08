@@ -1,0 +1,24 @@
+<div class="element extras">
+  <h1><%= @performance.title %> – Extras</h1>
+  <div id="extras_elements">
+    <ul>
+      <% @performance.videos.by_position.each do |video| %>
+        <li>
+          <%= link_to [:front, @performance, video] do %>
+            <%= image_tag video.pic(:slider), :title => video.pic_file_name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="related_links">
+    <%= link_to "Link to performance", [:front, @performance] %> |
+    <%= link_to "Link to video", video_front_performance_path(@performance) %>
+  </div>
+  <div id="text">
+    <p>
+      Extras for the performance
+      <%= link_to @performance.title, [:front, @performance] %>
+    </p>
+  </div>
+</div>
