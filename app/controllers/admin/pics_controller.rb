@@ -15,7 +15,7 @@ class Admin::PicsController < Admin::AdminController
   def destroy
     @pic = @performance.pics.find(params[:id])
     @pic.destroy
-    redirect_to admin_pics_url, :notice => "Successfully destroyed pic."
+    render :json => { :state => "ok" }
   end
 
   private

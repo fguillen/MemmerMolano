@@ -10,8 +10,8 @@ class Admin::PicsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal("application/json", response.content_type)
-    assert_equal("xxx", JSON.parse(response.body).first["url"])
-    assert_equal("xxx", JSON.parse(response.body).last["url"])
+    assert_match("pic_#{pic_1.id}_admin.jpg", JSON.parse(response.body).first["url"])
+    assert_match("pic_#{pic_2.id}_admin.jpg", JSON.parse(response.body).last["url"])
   end
 
   def test_create
@@ -27,12 +27,12 @@ class Admin::PicsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal("application/json", response.content_type)
-    assert_equal("xxx", JSON.parse(response.body)["url"])
+    assert_match("pic_#{pic.id}_admin.jpg", JSON.parse(response.body)["url"])
   end
 
   def test_destroy
     performance = FactoryGirl.create(:performance)
-    pic = FactoryGirl.create(:pic, :performance => performance)
+    pic = FactoryGirl.create(:pic, :performance => performance, :thumb => File.new(fixture("/images/2.jpg")))
 
     delete(
       :destroy,

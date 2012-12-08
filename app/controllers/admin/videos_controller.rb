@@ -8,7 +8,7 @@ class Admin::VideosController < Admin::AdminController
       redirect_to edit_admin_performance_path(@performance), :notice => "Successfully created Video."
     else
       flash.now[:alert] = "Some errors trying to create the Video."
-      render :action => "new"
+      render "/admin/performances/edit"
     end
   end
 
