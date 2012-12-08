@@ -10,8 +10,8 @@ class Admin::PicsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal("application/json", response.content_type)
-    assert_match("pic_#{pic_1.id}_admin.jpg", JSON.parse(response.body).first["url"])
-    assert_match("pic_#{pic_2.id}_admin.jpg", JSON.parse(response.body).last["url"])
+    assert_match("pic_#{pic_1.id}_admin.jpg", JSON.parse(response.body).first["file_url"])
+    assert_match("pic_#{pic_2.id}_admin.jpg", JSON.parse(response.body).last["file_url"])
   end
 
   def test_create
@@ -27,7 +27,7 @@ class Admin::PicsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal("application/json", response.content_type)
-    assert_match("pic_#{pic.id}_admin.jpg", JSON.parse(response.body)["url"])
+    assert_match("pic_#{pic.id}_admin.jpg", JSON.parse(response.body)["file_url"])
   end
 
   def test_destroy
@@ -45,5 +45,24 @@ class Admin::PicsControllerTest < ActionController::TestCase
     assert_equal("ok", JSON.parse(response.body)["state"])
 
     assert !Pic.exists?(pic.id)
+  end
+
+  def test_reorder
+    performance = FactoryGirl.create(:performance)
+    pic_1 = FactoryGirl.create(:pic, :position => 1, :performance => performance, :thumb => File.new(fixture("/images/2.jpg")))
+    pic_2 = FactoryGirl.create(:pic, :position => 2,:performance => performance, :thumb => File.new(fixture("/images/2.jpg")))
+    pic_3 = FactoryGirl.create(:pic, :position => 3,:performance => performance, :thumb => File.new(fixture("/images/2.jpg")))
+
+    performance.reload
+    assert_equal([pic_1, pic_2, pic_3].map(&:id), performance.pics.by_position.map(&:id))
+
+    post(
+      :reorder,
+      :performance_id => performance,
+      :ids => [pic_2, pic_3, pic_1].map(&:id)
+    )
+
+    performance.reload
+    assert_equal([pic_2, pic_3, pic_1].map(&:id), performance.pics.by_position.map(&:id))
   end
 end

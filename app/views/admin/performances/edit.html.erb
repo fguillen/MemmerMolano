@@ -5,14 +5,14 @@
     <%= f.error_messages %>
     <%= f.text_field :title, :class => "span12", :placeholder => "Title of the Performance" %>
     <%= f.text_area :text, :class => "span12", :rows => "10", :placeholder => "Description of the Performance" %>
-    <input type="button" class="btn btn-primary pull-right" value="Update" />
+    <%= f.submit "Update", :class => "btn btn-primary pull-right" %>
   <% end %>
 
   <div class="pics">
     <h2>Pics</h2>
     <script type="text/template" id="template_image">
       <div class="item {{state}}">
-        <div class="image" style="background-image: url( '{{url}}' )"></div>
+        <div class="image" style="background-image: url( '{{file_url}}' )"></div>
         <div class="controls">
           <a href="#delete" class="delete"><img src="/assets/delete.png" /></a>
         </div>
@@ -56,14 +56,15 @@
   <div class="video_main">
     <h2>Main Video</h2>
     <div class="video_form main row">
-      <div class="video_player span7">
-        <iframe src="http://blip.tv/play/hMxqgvvlBgA.html?p=1" width="640" height="360" frameborder="0" allowfullscreen></iframe>
-        <embed type="application/x-shockwave-flash" src="http://a.blip.tv/api.swf#hMxqgvvlBgA" style="display:none"></embed>
-      </div>
-      <div class="video_script span5">
-        <textarea rows="4" class="span5" placeholder="The video script"></textarea>
-        <input type="button" class="btn btn-primary pull-right" value="Update" />
-      </div>
+      <%= form_for [:admin, @performance] do |f| %>
+        <div class="video_player span7">
+          <%= @performance.video_script.html_safe %>
+        </div>
+        <div class="video_script span5">
+          <%= f.text_area :video_script, :class => "span5", :rows => "4", :placeholder => "The video script" %>
+          <%= f.submit "Update", :class => "btn btn-primary pull-right" %>
+        </div>
+      <% end %>
     </div>
   </div><!-- video_main -->
 
@@ -72,100 +73,28 @@
   <div class="video_extras">
     <h2>Extra Videos</h2>
     <p>
-      <a href="#new_extra_video" class="btn" data-toggle="modal">New Extra Video</a>
-
-      <!-- Modal -->
-      <div id="new_extra_video" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="myModalLabel">Create new Extra Video</h3>
-        </div>
-        <form class="form">
-          <div class="modal-body">
-            <input type="text" placeholder="The Video title" class="span5" />
-
-            <input id="lefile" type="file" style="display:none">
-            <div class="input-append">
-               <input id="photoCover" class="input span4" type="text">
-               <a class="btn" onclick="$('input[id=lefile]').click();">Browse</a>
-            </div>
-            <script type="text/javascript">
-              $('input[id=lefile]').change(function() {
-                 $('#photoCover').val($(this).val());
-              });
-            </script>
-
-            <textarea placeholder="The Video script" class="span5" rows="4"></textarea>
-            <textarea placeholder="The Video description" class="span5" rows="5"></textarea>
-          </div>
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <button class="btn btn-primary">Create new Extra Video</button>
-          </div>
-
-        </form>
-      </div>
+      <a href="#new_extra_video" class="btn btn-primary" data-toggle="modal">New Extra Video</a>
+      <%= render :partial => "/admin/videos/new", :locals => { :performance => @performance } %>
     </p>
 
     <div class="row-fluid">
       <ul class="thumbnails">
-        <li class="span6">
-          <div class="thumbnail">
-            <img title="Samples" src="../images/choose/extras1.jpg" />
-            <div class="caption">
-              <h3>Video Title</h3>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a href="#" class="btn btn-danger">Remove</a></p>
+        <% @performance.videos.each do |video| %>
+          <li class="span6">
+            <div class="thumbnail">
+              <%= image_tag video.pic(:slider) %>
+              <div class="caption">
+                <h3><%= video.title %></h3>
+                <p><%= video.text.to_md %></p>
+                <p>
+                  <%= link_to "Remove", [:admin, @performance, video], :method => :delete, :class => "btn btn-danger" %>
+                </p>
+              </div>
             </div>
-          </div>
-        </li>
-        <li class="span6">
-          <div class="thumbnail">
-            <img title="Samples" src="../images/choose/extras1.jpg" />
-            <div class="caption">
-              <a href="#open_video" data-toggle="modal">Open video</a>
-              <h3>Video Title</h3>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a href="#" class="btn btn-danger">Remove</a></p>
-            </div>
-          </div>
-        </li>
-        <li class="span3">
-          <div class="thumbnail">
-            <img title="Samples" src="../images/choose/extras1.jpg" />
-            <div class="caption">
-              <h3>Video Title</h3>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a href="#" class="btn btn-danger">Remove</a></p>
-            </div>
-          </div>
-        </li>
-        <li class="span3">
-          <div class="thumbnail">
-            <img title="Samples" src="../images/choose/extras1.jpg" />
-            <div class="caption">
-              <h3>Video Title</h3>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a href="#" class="btn btn-danger">Remove</a></p>
-            </div>
-          </div>
-        </li>
-
-        <li class="span3">
-          <div class="thumbnail">
-            <img title="Samples" src="../images/choose/extras1.jpg" />
-            <div class="caption">
-              <h3>Video Title</h3>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a href="#" class="btn btn-danger">Remove</a></p>
-            </div>
-          </div>
-        </li>
+          </li>
+        <% end %>
       </ul>
     </div>
-
-  </div><!-- video_extras -->
-
   <p>
     <%= link_to "Show", [:admin, @performance] %> |
     <%= link_to "View All", admin_performances_path %>

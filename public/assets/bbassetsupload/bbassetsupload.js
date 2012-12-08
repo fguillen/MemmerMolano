@@ -333,7 +333,11 @@ $(function(){
     },
 
     destroy: function(){
+      console.log( "removing pic" );
+      console.log( "model", this.model );
+      console.log( "model.url", this.model.url() );
       this.model.destroy();
+      console.log( "removed pic" );
     },
 
     render: function() {

@@ -1,0 +1,31 @@
+<!-- Modal -->
+<div id="new_extra_video" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Create new Extra Video</h3>
+  </div>
+  <%= form_for [:admin, @performance, Video.new], :html => { :class => "form" } do |f| %>
+    <div class="modal-body">
+      <%= f.text_field :title, :placeholder => "The Video title", :class => "span5" %>
+      <%= f.file_field :pic, :style => "display:none", :id => "video_pic_field" %>
+
+      <div class="input-append">
+         <input id="photoCover" class="input span4" type="text">
+         <a class="btn" onclick="$('input[id=video_pic_field]').click();">Browse</a>
+      </div>
+      <script type="text/javascript">
+        $('input[id=video_pic_field]').change(function() {
+           $('#photoCover').val($(this).val());
+        });
+      </script>
+
+      <%= f.text_area :script, :placeholder => "The Video script", :class => "span5", :rows => "4" %>
+      <%= f.text_area :text, :placeholder => "The Video description", :class => "span5", :rows => "5" %>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <%= f.submit "Create the new Extra Video", :class => "btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div><!-- video new -->
