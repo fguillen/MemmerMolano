@@ -114,10 +114,12 @@ li.active a {
 }
 
 .extras #extras_elements ul li {
+  height: 117px;
   padding: 0;
   list-style: none;
   float: left;
   position: relative;
+  overflow: hidden;
 }
 
 
@@ -125,16 +127,22 @@ li.active a {
   display: block;
 }
 
+
 .extras .extra_title {
-  text-align: right;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  font-weight: bold;
+  font-size: 40px;
   background-color: rgba(248, 248, 127, 0.5);
-  padding: 10px;
+  padding: 0px;
   display: none;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  color: black;
 }
 
 

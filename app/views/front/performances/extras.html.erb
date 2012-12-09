@@ -5,7 +5,7 @@
       <% @performance.videos.by_position.each do |video| %>
         <li>
           <%= link_to [:front, @performance, video] do %>
-            <%= image_tag video.pic(:slider), :title => video.pic_file_name %>
+            <%= image_tag video.pic(:slider), :title => video.title %>
           <% end %>
         </li>
       <% end %>
