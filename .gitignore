@@ -16,6 +16,5 @@ rerun.txt
 pickle-email-*.html
 /etc/secret
 coverage
-/config/app_config.yml
 /config/database.yml
 /public/uploads/
