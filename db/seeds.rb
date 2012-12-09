@@ -4,7 +4,7 @@ video_script = <<-eos
 eos
 
 ActiveRecord::Base.transaction do
-  10.times.each do |index|
+  5.times.each do |index|
     performance =
       Performance.create!(
         :title => Faker::Lorem.sentence,
@@ -16,7 +16,7 @@ ActiveRecord::Base.transaction do
     puts "Performance created: '#{performance.title}'"
   end
 
-  30.times.each do |index|
+  20.times.each do |index|
     performance = Performance.all.sample
     pic =
       Pic.create!(
@@ -27,7 +27,7 @@ ActiveRecord::Base.transaction do
     puts "Pic created in performance: '#{performance.title}'"
   end
 
-  40.times.each do |index|
+  30.times.each do |index|
     performance = Performance.all.sample
     video =
       Video.create!(
