@@ -7,7 +7,7 @@ $(function(){
     this.url                    = opts.url;
     this.listElement            = opts.listElement;
     this.videoTemplate          = opts.videoTemplate;
-    this.newVideoElement        = opts.newVideoElement;
+    this.videoFormElement        = opts.videoFormElement;
 
     this.initialize = function( opts ){
       this.videos = new VideoExtrasApp.Videos({
@@ -20,10 +20,11 @@ $(function(){
         videoTemplate: this.videoTemplate,
       });
 
-      this.newVideoVideo = new VideoExtrasApp.NewVideoView({
-        el: this.newVideoElement,
+      this.videoFormView = new VideoExtrasApp.VideoFormView({
+        el: this.videoFormElement,
         url: this.url,
-        collection: this.videos
+        collection: this.videos,
+        model: new VideoExtrasApp.Video()
       });
 
       $(this.listElement).append( this.videosView.render().el );
@@ -90,30 +91,35 @@ $(function(){
   VideoExtrasApp.VideoView = Backbone.View.extend({
     tagName: "li",
 
+    events: {
+      "click .delete": "destroy",
+      "click .update": "showForm"
+    },
+
     attributes: {
       class: "video_item span6"
     },
 
     initialize: function(){
-      console.log( "this.options.template", this.options.template );
       this.template = _.template( this.options.template );
 
       this.model.on( "destroy", this.remove, this );
       this.model.on( "change", this.render, this );
     },
 
-    events: {
-      "click .delete": "destroy"
-    },
-
     destroy: function(){
       this.model.destroy();
     },
 
+    showForm: function(){
+
+    },
+
     render: function() {
-      console.log( "this.model.toJSON", this.model.toJSON() );
       this.$el.html( this.template( this.model.toJSON() ) );
       this.$el.attr( "data-id", this.model.id );
+      this.$el.find("#video_form").attr( "id", "video_form_" + this.model.id );
+      this.$el.find("#video_pic_field").attr( "id", "video_pic_field_" + this.model.id );
       return this;
     }
 
@@ -165,21 +171,18 @@ $(function(){
     },
   });
 
-  VideoExtrasApp.NewVideoView = Backbone.View.extend({
+  VideoExtrasApp.VideoFormView = Backbone.View.extend({
     events: {
-      "click .submit": "createVideo"
+      "click .submit": "sendData"
     },
 
     initialize: function(){
       _.bindAll( this, "parseResponse" );
-      console.log( "NewVideoView", this.$el );
+      this.formAction = this.options.model.id ? "PUT" : "POST"
     },
 
-    createVideo: function( event ){
+    sendData: function( event ){
       event.preventDefault();
-
-      console.log( "NewVideoView.createVideo" );
-
       this.$el.find( "#video_new_errors" ).fadeOut();
       this.$el.find( "#video_new_errors ul" ).empty();
 
@@ -187,8 +190,7 @@ $(function(){
 
       $.ajax({
         url: this.options.url,
-        type: "POST",
-        beforeSend: function(){ console.log( "beforeSend" ) },
+        type: this.formAction,
         success:  this.parseResponse,
         error:  function( error ){ console.log( "error", error ) },
         data: formData,
@@ -201,8 +203,6 @@ $(function(){
     parseResponse: function( data ){
       console.log( "parseResponse", data );
       var _self = this;
-
-      console.log( "parseResponse.el", this.$el );
 
       if( data.errors ) {
         _.each(data.errors, function( error ){

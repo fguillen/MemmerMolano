@@ -1,8 +1,11 @@
 <div class="video_extras">
   <h2>Extra Videos</h2>
   <p>
-    <a href="#new_extra_video" class="btn btn-primary" data-toggle="modal">New Extra Video</a>
-    <%= render :partial => "/admin/videos/new", :locals => { :performance => performance } %>
+    <a href="#video_form" class="btn btn-primary" data-toggle="modal">New Extra Video</a>
+    <%= render :partial => "/admin/videos/form", :locals => { :performance => performance } %>
+    <script>
+      niceFileField($("#video_form #video_pic_field"));
+    </script>
   </p>
 
   <div class="list">
@@ -16,10 +19,12 @@
       <h3>{{title}}</h3>
       <p>{{text}}</p>
       <p>
+        <a href="#video_form_{{id}}" class="update btn" data-toggle="modal">Update</a>
         <a href="#delete" class="delete btn btn-danger">Remove</a>
       </p>
     </div>
   </div>
+  <%= render :partial => "/admin/videos/form", :locals => { :performance => performance } %>
 </script>
 
 <script>
@@ -27,7 +32,7 @@
     new VideoExtrasApp({
       url: "<%= admin_performance_videos_path(performance) %>",
       listElement: $(".video_extras .list"),
-      newVideoElement: $("#new_extra_video"),
+      videoFormElement: $("#video_form"),
       videoTemplate: $("#video_template").html()
     });
   });
