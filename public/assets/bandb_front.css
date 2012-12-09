@@ -61,6 +61,7 @@ li.active a {
   font-size: 18px;
   font-weight: normal;
   text-align: right;
+  margin-bottom: 5px;
 }
 
 .element #gallery {

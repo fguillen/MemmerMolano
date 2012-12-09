@@ -2,6 +2,8 @@ class Pic < ActiveRecord::Base
   attr_protected nil
   belongs_to :performance
 
+  before_validation :initialize_position
+
   has_attached_file(
     :thumb,
     :styles => {
@@ -17,4 +19,8 @@ class Pic < ActiveRecord::Base
   validates_attachment_presence :thumb
 
   scope :by_position, order("position asc")
+
+  def initialize_position
+    self.position ||= Pic.by_position.last ? Pic.by_position.last.position + 1 : 1
+  end
 end

@@ -15,6 +15,8 @@ BedAndBreakfast2::Application.routes.draw do
     match "/" => "performances#index"
 
     resources :performances, :only => [:index, :new, :create, :edit, :update, :destroy] do
+      post :reorder, :on => :collection
+
       resources :pics do
         post :reorder, :on => :collection
       end

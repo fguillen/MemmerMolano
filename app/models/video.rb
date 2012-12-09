@@ -2,6 +2,8 @@ class Video < ActiveRecord::Base
   belongs_to :performance
   attr_protected nil
 
+  before_validation :initialize_position
+
   has_attached_file(
     :pic,
     :styles => {
@@ -32,5 +34,9 @@ class Video < ActiveRecord::Base
 
   def to_param
     "#{id}-#{title}".parameterize
+  end
+
+  def initialize_position
+    self.position ||= Video.by_position.last ? Video.by_position.last.position + 1 : 1
   end
 end

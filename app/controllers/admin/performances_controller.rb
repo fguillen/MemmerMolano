@@ -36,4 +36,11 @@ class Admin::PerformancesController < Admin::AdminController
     @performance.destroy
     redirect_to admin_performances_url, :notice => "Successfully destroyed performance."
   end
+
+  def reorder
+    params[:ids].each_with_index do |id, index|
+      Performance.update_all(["position=?", index], ["id=?", id])
+    end
+    render :json => { :status => "ok" }
+  end
 end

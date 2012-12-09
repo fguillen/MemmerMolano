@@ -6,7 +6,7 @@ class CreateVideos < ActiveRecord::Migration
       t.attachment :pic
       t.text :script, :null => false
       t.text :text
-      t.integer :position, :default => 0
+      t.integer :position, :null => false
 
       t.timestamps
     end

@@ -59,3 +59,13 @@ body {
 .clear {
   clear: boths;
 }
+
+/* performances index */
+#performances_list tr .handle {
+  display:none;
+  cursor: move;
+}
+
+#performances_list tr:hover .handle {
+  display:block;
+}

@@ -2,23 +2,53 @@
 
 <p><%= link_to "New Admin/Performance", new_admin_performance_path, :class => "btn btn-primary" %></p>
 
-<table class="table table-hover">
+<table id="performances_list" class="table table-hover">
   <thead>
     <tr>
+      <th class="span1"></th>
       <th class="span1">#</th>
-      <th class="span7">Title</th>
+      <th class="span8">Title</th>
       <th class="span2">Created at</th>
     </tr>
   </thead>
   <tbody>
     <% @performances.each do |performance| %>
-      <tr>
-        <td><%= performance.id %></td>
-        <td><%= link_to performance.title, edit_admin_performance_path(performance) %></td>
-        <td><%= performance.created_at.to_s(:datedb) %></td>
+      <tr data-id="<%= performance.id %>">
+        <td class="span1"><div class="handle"><i class="icon-th-list"></i></div>
+        <td class="span1"><%= performance.id %></td>
+        <td class="span8"><%= link_to performance.title, edit_admin_performance_path(performance) %></td>
+        <td class="span2"><%= performance.created_at.to_s(:datedb) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<p>Click on one of the title to access to the edition mode</p>
+<p>Click on one of the titles to access to the edition mode</p>
+
+<script>
+  $(function() {
+    $( "#performances_list tbody" ).sortable({
+      handle: ".handle",
+      update: performancesReorder
+    });
+
+    function performancesReorder(){
+      var sorted_ids =
+        $.makeArray(
+          $("#performances_list").find( "tr" ).map( function( element ){
+            return $(this).attr( "data-id" );
+          })
+        );
+
+      console.log( "sorted_ids", sorted_ids );
+
+      $.ajax({
+        url: "<%= reorder_admin_performances_path %>",
+        type: "POST",
+        data: { ids: sorted_ids },
+        success: function( error ){ console.log( "Performances reordered" ) },
+        error: function( error ){ console.error( "error", error ) }
+      });
+    };
+  });
+</script>
