@@ -18,4 +18,14 @@ class Video < ActiveRecord::Base
   validates_presence_of :pic
 
   scope :by_position, order("position asc")
+
+  def to_json
+    {
+      :id => id,
+      :pic_url => pic(:slider),
+      :title => title,
+      :text => text,
+      :script => script
+    }
+  end
 end

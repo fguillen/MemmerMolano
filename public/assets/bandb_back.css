@@ -23,9 +23,28 @@ body {
   margin-top: 9px;
 }
 
-.modal.video{
-  width: 668px;
-  margin-left: -334px; /* - width/2 */
+.video_extras .thumbnails ul {
+  margin: 0;
+}
+
+.video_extras .thumbnails ul li {
+  list-style: none;
+}
+
+.video_extras .thumbnails li:nth-child(odd) {
+  clear: left;
+}
+
+.video_extras .placeholder {
+  width: 282px;
+  height: 188px;
+  box-sizing: border-box;
+  border: 3px dashed #ccc;
+  float: left;
+}
+
+.video_extras #video_new_errors {
+  display: none;
 }
 
 .clear {

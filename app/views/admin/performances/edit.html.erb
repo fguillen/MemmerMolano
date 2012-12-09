@@ -71,31 +71,8 @@
 
   <div class="clear"></div>
 
-  <div class="video_extras">
-    <h2>Extra Videos</h2>
-    <p>
-      <a href="#new_extra_video" class="btn btn-primary" data-toggle="modal">New Extra Video</a>
-      <%= render :partial => "/admin/videos/new", :locals => { :performance => @performance } %>
-    </p>
+  <%= render :partial => "/admin/performances/video_extras", :locals => { :performance => @performance } %>
 
-    <div class="row-fluid">
-      <ul class="thumbnails">
-        <% @performance.videos.each do |video| %>
-          <li class="span6">
-            <div class="thumbnail">
-              <%= image_tag video.pic(:slider) %>
-              <div class="caption">
-                <h3><%= video.title %></h3>
-                <p><%= video.text.to_md %></p>
-                <p>
-                  <%= link_to "Remove", [:admin, @performance, video], :method => :delete, :class => "btn btn-danger" %>
-                </p>
-              </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </div>
   <p>
     <%= link_to "Show", [:admin, @performance] %> |
     <%= link_to "View All", admin_performances_path %>

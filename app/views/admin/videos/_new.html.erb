@@ -4,8 +4,14 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Create new Extra Video</h3>
   </div>
-  <%= form_for [:admin, @performance, Video.new], :html => { :class => "form" } do |f| %>
+
+  <%= form_for [:admin, @performance, Video.new], :html => { :onsubmit => "return false;", :class => "form" } do |f| %>
     <div class="modal-body">
+      <div id="video_new_errors" class="alert alert-error">
+        <ul>
+        </ul>
+      </div>
+
       <%= f.text_field :title, :placeholder => "The Video title", :class => "span5" %>
       <%= f.file_field :pic, :style => "display:none", :id => "video_pic_field" %>
 
@@ -24,7 +30,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <%= f.submit "Create the new Extra Video", :class => "btn btn-primary" %>
+      <%= f.submit "Create the new Extra Video", :class => "submit btn btn-primary" %>
     </div>
 
   <% end %>
