@@ -40,44 +40,6 @@ $(function(){
       _.bindAll( this, "onProgress", "onSuccess", "onError" );
       if( !this.get( "state" ) ) this.set( "state", "completed" );
     },
-
-    upload: function() {
-      console.debug( "[BBAssetsUpload 0.0.3] Uploading file: " + this.get( "file" ).name );
-
-      $.upload(
-        this.get( "url" ),
-        this.get( "file" ),
-        {
-          upload:   { progress: this.onProgress },
-          success:  this.onSuccess,
-          error:    this.onError
-        }
-      );
-    },
-
-    onStart: function(){
-      if( this.eventCatcher ) this.eventCatcher.trigger( "asset:start", this );
-    },
-
-    onProgress: function( event ){
-      var progress = Math.round((event.position / event.total) * 100);
-      var opts = { "progress": progress };
-      if( progress == 100 ) opts["state"] = "processing";
-      this.set( opts );
-      if( this.eventCatcher ) this.eventCatcher.trigger( "asset:progress", this );
-    },
-
-    onSuccess: function( event ){
-      console.debug( "[BBAssetsUpload 0.0.3] File uploaded: " + this.get( "file" ).name );
-      var opts = _.extend( event, { "state": "completed" } );
-      this.set( opts );
-      if( this.eventCatcher ) this.eventCatcher.trigger( "asset:success", this );
-    },
-
-    onError: function( event ){
-      console.error( "[BBAssetsUpload 0.0.3] onError uploading file: " + this.get( "file" ).name, event );
-      if( this.eventCatcher ) this.eventCatcher.trigger( "asset:error", this );
-    }
   });
 
   VideoExtrasApp.Videos = Backbone.Collection.extend({
@@ -92,8 +54,7 @@ $(function(){
     tagName: "li",
 
     events: {
-      "click .delete": "destroy",
-      "click .update": "showForm"
+      "click .delete": "destroy"
     },
 
     attributes: {
@@ -111,15 +72,21 @@ $(function(){
       this.model.destroy();
     },
 
-    showForm: function(){
-
-    },
-
     render: function() {
+      console.log( "render this.model.toJSON()", this.model.toJSON() );
+
       this.$el.html( this.template( this.model.toJSON() ) );
       this.$el.attr( "data-id", this.model.id );
       this.$el.find("#video_form").attr( "id", "video_form_" + this.model.id );
-      this.$el.find("#video_pic_field").attr( "id", "video_pic_field_" + this.model.id );
+
+      /* Activate VideoFormView */
+      this.videoFormView = new VideoExtrasApp.VideoFormView({
+        el: this.$el.find("#video_form_" + this.model.id ),
+        url: this.model.url(),
+        collection: this.model.collection,
+        model: this.model
+      });
+
       return this;
     }
 
@@ -178,13 +145,21 @@ $(function(){
 
     initialize: function(){
       _.bindAll( this, "parseResponse" );
-      this.formAction = this.options.model.id ? "PUT" : "POST"
+      this.formAction = this.options.model.get("id") ? "PUT" : "POST"
+      niceFileField(this.$el.find(".video_pic_field"));
+      this.fillFormFields()
+    },
+
+    fillFormFields: function(){
+      this.$el.find("#video_title").val( this.options.model.get("title") );
+      this.$el.find("#video_script").val( this.options.model.get("script") );
+      this.$el.find("#video_text").val( this.options.model.get("text") );
     },
 
     sendData: function( event ){
       event.preventDefault();
-      this.$el.find( "#video_new_errors" ).fadeOut();
-      this.$el.find( "#video_new_errors ul" ).empty();
+      this.$el.find( "#video_new_errors" ).hide();
+      this.$el.find( "#video_new_errors ul" ).remove();
 
       var formData = new FormData(this.$el.find('form')[0]);
 
@@ -192,7 +167,7 @@ $(function(){
         url: this.options.url,
         type: this.formAction,
         success:  this.parseResponse,
-        error:  function( error ){ console.log( "error", error ) },
+        error:  function( error ){ console.error( "error", error ) },
         data: formData,
         cache: false,
         contentType: false,
@@ -205,14 +180,17 @@ $(function(){
       var _self = this;
 
       if( data.errors ) {
+        this.$el.find( "#video_new_errors" ).append("<ul></ul>");
+
         _.each(data.errors, function( error ){
           _self.$el.find( "#video_new_errors ul" ).append( "<li>" +  error + "</li>" );
         });
 
         this.$el.find( "#video_new_errors" ).fadeIn();
       } else {
-        var video = new VideoExtrasApp.Video( data )
-        this.options.collection.add( video );
+        this.$el.modal("hide");
+        this.options.model.set( data );
+        this.options.collection.add( this.options.model );
       }
     }
 
