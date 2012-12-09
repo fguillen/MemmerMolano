@@ -5,6 +5,7 @@
 #performance_form .pics .list > ul > li {
   float: left;
   list-style: none;
+  line-height: 15px;
 }
 
 #performance_form .pics {

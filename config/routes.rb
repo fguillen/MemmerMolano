@@ -12,6 +12,8 @@ BedAndBreakfast2::Application.routes.draw do
   end
 
   namespace :admin do
+    match "/" => "performances#index"
+
     resources :performances, :only => [:index, :new, :create, :edit, :update, :destroy] do
       resources :pics do
         post :reorder, :on => :collection
