@@ -6,4 +6,8 @@ class Performance < ActiveRecord::Base
   validates_presence_of :title
 
   scope :by_position, order("position asc")
+
+  def to_param
+    "#{id}-#{title}".parameterize
+  end
 end

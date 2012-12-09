@@ -29,4 +29,8 @@ class Video < ActiveRecord::Base
       :script => script
     }
   end
+
+  def to_param
+    "#{id}-#{title}".parameterize
+  end
 end
