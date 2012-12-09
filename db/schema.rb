@@ -14,18 +14,18 @@
 ActiveRecord::Schema.define(:version => 20121208171809) do
 
   create_table "performances", :force => true do |t|
-    t.string   "title",        :null => false
+    t.string   "title",                       :null => false
     t.text     "text"
     t.text     "video_script"
     t.text     "video_text"
-    t.integer  "position",     :null => false
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "position",     :default => 0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "pics", :force => true do |t|
     t.integer  "performance_id"
-    t.integer  "position",           :null => false
+    t.integer  "position"
     t.string   "thumb_file_name"
     t.string   "thumb_content_type"
     t.integer  "thumb_file_size"
@@ -35,17 +35,17 @@ ActiveRecord::Schema.define(:version => 20121208171809) do
   end
 
   create_table "videos", :force => true do |t|
-    t.integer  "performance_id",   :null => false
-    t.string   "title",            :null => false
+    t.integer  "performance_id",                  :null => false
+    t.string   "title",                           :null => false
     t.string   "pic_file_name"
     t.string   "pic_content_type"
     t.integer  "pic_file_size"
     t.datetime "pic_updated_at"
-    t.text     "script",           :null => false
+    t.text     "script",                          :null => false
     t.text     "text"
-    t.integer  "position",         :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "position",         :default => 0
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   add_index "videos", ["performance_id"], :name => "index_videos_on_performance_id"

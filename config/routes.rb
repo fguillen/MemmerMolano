@@ -1,4 +1,4 @@
-BedAndBreakfast2::Application.routes.draw do
+BedAndBreakfast::Application.routes.draw do
   root :to => "front/performances#last"
 
   namespace :front do
