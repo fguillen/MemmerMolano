@@ -86,6 +86,8 @@ $(function(){
         model: this.model
       });
 
+      this.videoFormView.$el.find("#video_text").mdmagick();
+
       return this;
     }
 
