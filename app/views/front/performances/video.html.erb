@@ -8,10 +8,6 @@
     <%= link_to "Link to extras", extras_front_performance_path(@performance) %>
   </div>
   <div id="text">
-    <p>
-      Duration: 20’ <br />
-      Kaskadenkondesator. Basel.  <br />
-      January 2011.
-    </p>
+    <%= @performance.video_text.to_md %>
   </div>
 </div>

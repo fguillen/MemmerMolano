@@ -37,8 +37,10 @@
 
           <li>Video
             <ul>
-              <% Performance.by_position.map { |e| e.videos.by_position }.flatten.each do |video| %>
-                <li class="<%= "active" if video == @video %>"><%= link_to video.title, [:front, @performance, video] %></li>
+              <% Performance.by_position.each do |performance| %>
+                <% performance.videos.by_position.each do |video| %>
+                  <li class="<%= "active" if video == @video %>"><%= link_to video.title, [:front, performance, video] %></li>
+                <% end %>
               <% end %>
             </ul>
           </li>

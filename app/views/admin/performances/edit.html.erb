@@ -60,8 +60,9 @@
         <div class="video_player span7">
           <%= @performance.video_script.html_safe %>
         </div>
-        <div class="video_script span5">
-          <%= f.text_area :video_script, :class => "span5", :rows => "4", :placeholder => "The video script" %>
+        <div class="video_details span5">
+          <%= f.text_area :video_text, :class => "span5", :rows => "5", :placeholder => "The video script" %>
+          <%= f.text_area :video_script, :class => "span5", :rows => "4", :placeholder => "The video description" %>
           <%= f.submit "Update", :class => "btn btn-primary pull-right" %>
         </div>
       <% end %>

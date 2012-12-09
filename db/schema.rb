@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20121208171809) do
     t.string   "title",                       :null => false
     t.text     "text"
     t.text     "video_script"
+    t.text     "video_text"
     t.integer  "position",     :default => 0
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false

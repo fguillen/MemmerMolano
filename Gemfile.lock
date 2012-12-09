@@ -35,6 +35,8 @@ GEM
     erubis (2.7.0)
     factory_girl (4.0.0)
       activesupport (>= 3.0.0)
+    faker (1.1.2)
+      i18n (~> 0.5)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -102,6 +104,7 @@ PLATFORMS
 DEPENDENCIES
   bluecloth (~> 2.2.0)
   factory_girl (= 4.0.0)
+  faker
   jquery-rails
   json
   mocha

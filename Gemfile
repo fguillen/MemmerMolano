@@ -6,6 +6,7 @@ gem "json"
 gem "jquery-rails"
 gem "paperclip", "~> 3.0"
 gem "bluecloth", "~> 2.2.0"
+gem "faker"
 
 group :development do
   gem "nifty-generators"

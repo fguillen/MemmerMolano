@@ -4,6 +4,7 @@ class CreatePerformances < ActiveRecord::Migration
       t.string :title, :null => false
       t.text :text
       t.text :video_script
+      t.text :video_text
       t.integer :position, :default => 0
       t.timestamps
     end
