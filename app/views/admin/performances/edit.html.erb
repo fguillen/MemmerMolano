@@ -1,12 +1,18 @@
 <% title "Edit Admin/Performance" %>
 
 <div id="performance_form">
-  <%= form_for [:admin, @performance] do |f| %>
-    <%= f.error_messages %>
+  <%= form_for [:admin, @performance], :html => { :id => "performance_form_details" } do |f| %>
+    <div id="performance_form_details_errors" class="alert alert-error" style="display:none"></div>
     <%= f.text_field :title, :class => "span12", :placeholder => "Title of the Performance" %>
     <%= f.text_area :text, :class => "span12", :rows => "10", :placeholder => "Description of the Performance" %>
     <%= f.submit "Update", :class => "btn btn-primary pull-right" %>
   <% end %>
+
+  <script>
+    $(function(){
+      ajaxify( $("#performance_form_details"), $("#performance_form_details_errors") );
+    });
+  </script>
 
   <div class="pics">
     <h2>Pics</h2>
@@ -56,17 +62,26 @@
   <div class="video_main">
     <h2>Main Video</h2>
     <div class="video_form main row">
-      <%= form_for [:admin, @performance] do |f| %>
-        <div class="video_player span7">
-          <%= @performance.video_script.html_safe %>
+      <%= form_for [:admin, @performance], :html => { :id => "performance_form_video" } do |f| %>
+        <div class="video_player span8">
+          <% if @performance.video_script %>
+            <%= @performance.video_script.html_safe %>
+          <% end %>
         </div>
-        <div class="video_details span5">
-          <%= f.text_area :video_text, :class => "span5", :rows => "5", :placeholder => "The video script" %>
-          <%= f.text_area :video_script, :class => "span5", :rows => "4", :placeholder => "The video description" %>
+        <div class="video_details span4">
+          <div id="performance_form_video_errors" class="alert alert-error" style="display:none"></div>
+          <%= f.text_area :video_script, :class => "span4", :rows => "6", :placeholder => "The video script" %>
+          <%= f.text_area :video_text, :class => "span4", :rows => "7", :placeholder => "The video description" %>
           <%= f.submit "Update", :class => "btn btn-primary pull-right" %>
         </div>
       <% end %>
     </div>
+
+    <script>
+      $(function(){
+        ajaxify( $("#performance_form_video"), $("#performance_form_video_errors") );
+      });
+    </script>
   </div><!-- video_main -->
 
   <div class="clear"></div>

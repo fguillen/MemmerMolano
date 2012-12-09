@@ -25,6 +25,32 @@ function niceFileField( file_field ){
   });
 };
 
-function ajaxify( form_element ){
+function ajaxify( form_element, errors_wrapper_element ){
+  var parseResponse = function( data ){
+    if( data.errors ) {
+      errors_wrapper_element.append("<ul></ul>");
+      _.each(data.errors, function( error ){
+        errors_wrapper_element.find("ul").append( "<li>" + error + "</li>" );
+      });
+      errors_wrapper_element.fadeIn();
 
+    } else {
+      console.log( "Form sending success" );
+    }
+  };
+
+  form_element.on( "submit", function( event ){
+    event.preventDefault();
+
+    errors_wrapper_element.hide();
+    errors_wrapper_element.find("ul").remove();
+
+    $.ajax({
+      url: form_element.attr("action"),
+      type: form_element.attr("method"),
+      success: parseResponse,
+      error: function( error ){ console.error( "error", error ) },
+      data: form_element.serialize()
+    });
+  });
 }

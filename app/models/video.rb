@@ -15,7 +15,8 @@ class Video < ActiveRecord::Base
   validates_presence_of :performance_id
   validates_presence_of :title
   validates_presence_of :script
-  validates_presence_of :pic
+  validates_presence_of :text
+  validates_attachment_presence :pic
 
   scope :by_position, order("position asc")
 

@@ -14,7 +14,7 @@
     <% @performances.each do |performance| %>
       <tr>
         <td><%= performance.id %></td>
-        <td><%= link_to performance.title, [:admin, performance] %></td>
+        <td><%= link_to performance.title, edit_admin_performance_path(performance) %></td>
         <td><%= performance.created_at.to_s(:datedb) %></td>
       </tr>
     <% end %>

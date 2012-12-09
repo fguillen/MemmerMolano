@@ -7,7 +7,7 @@ class Pic < ActiveRecord::Base
     :styles => {
       :full => "1200x900>",
       :slider => "640x427>",
-      :admin => "282x188>"
+      :admin => "303x203>"
     },
     :path => ":rails_root/public/uploads/:rails_env/performances/pic_:id_:style.:extension",
     :url => "/uploads/:rails_env/performances/pic_:id_:style.:extension"

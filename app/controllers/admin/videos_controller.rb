@@ -18,9 +18,8 @@ class Admin::VideosController < Admin::AdminController
 
   def update
     video = @performance.videos.find(params[:id])
-    video.update_attributes(params[:video])
 
-    if video.save
+    if video.update_attributes(params[:video])
       render :json => video.to_json
     else
       render :json => { :errors => video.errors.full_messages }
@@ -32,6 +31,13 @@ class Admin::VideosController < Admin::AdminController
     @video.destroy
 
     render :json => { :state => "ok" }
+  end
+
+  def reorder
+    params[:ids].each_with_index do |id, index|
+      @performance.videos.update_all(["position=?", index], ["id=?", id])
+    end
+    render :json => { :status => "ok" }
   end
 
   private

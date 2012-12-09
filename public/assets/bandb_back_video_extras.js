@@ -37,7 +37,6 @@ $(function(){
 
   VideoExtrasApp.Video = Backbone.Model.extend({
     initialize: function(){
-      _.bindAll( this, "onProgress", "onSuccess", "onError" );
       if( !this.get( "state" ) ) this.set( "state", "completed" );
     },
   });
@@ -104,8 +103,8 @@ $(function(){
       this.collection.on( "reset", this.addAll, this );
 
       this.$el.sortable({
-        placeholder : "placeholder",
         update      : $.proxy( this.updateOrder, this ),
+        handle      : ".handle"
       });
 
       this.$el.disableSelection();
@@ -154,6 +153,11 @@ $(function(){
       this.$el.find("#video_title").val( this.options.model.get("title") );
       this.$el.find("#video_script").val( this.options.model.get("script") );
       this.$el.find("#video_text").val( this.options.model.get("text") );
+
+      if( this.options.model.get("id") ){
+        this.$el.find(".video_form_label").html("Update Extra Video");
+        this.$el.find(".submit").val("Update Extra Video");
+      }
     },
 
     sendData: function( event ){
@@ -166,8 +170,8 @@ $(function(){
       $.ajax({
         url: this.options.url,
         type: this.formAction,
-        success:  this.parseResponse,
-        error:  function( error ){ console.error( "error", error ) },
+        success: this.parseResponse,
+        error: function( error ){ console.error( "error", error ) },
         data: formData,
         cache: false,
         contentType: false,

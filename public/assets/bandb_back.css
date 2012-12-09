@@ -35,12 +35,21 @@ body {
   clear: left;
 }
 
-.video_extras .placeholder {
-  width: 282px;
-  height: 188px;
-  box-sizing: border-box;
-  border: 3px dashed #ccc;
-  float: left;
+.video_extras .thumbnails .thumbnail {
+  position: relative;
+  background-color: white;
+}
+
+.video_extras .thumbnails .thumbnail .handle {
+  cursor: move;
+  display:none;
+}
+
+.video_extras .thumbnails .thumbnail:hover .handle {
+  display: block;
+  position: absolute;
+  right: 9px;
+  top: 9px;
 }
 
 .video_extras #video_new_errors {

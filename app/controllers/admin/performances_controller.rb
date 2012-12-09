@@ -23,11 +23,11 @@ class Admin::PerformancesController < Admin::AdminController
 
   def update
     @performance = Performance.find(params[:id])
+
     if @performance.update_attributes(params[:performance])
-      redirect_to edit_admin_performance_path(@performance), :notice  => "Successfully updated performance."
+      render :json => { :state => "ok" }
     else
-      flash.now[:alert] = "Some errors trying to update the Performance."
-      render :action => "edit"
+      render :json => { :errors => @performance.errors.full_messages }
     end
   end
 

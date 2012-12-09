@@ -16,7 +16,9 @@ BedAndBreakfast2::Application.routes.draw do
       resources :pics do
         post :reorder, :on => :collection
       end
-      resources :videos
+      resources :videos do
+        post :reorder, :on => :collection
+      end
     end
   end
 end

@@ -2,14 +2,12 @@
 <div id="video_form" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Create new Extra Video</h3>
+    <h3 class="video_form_label">Create new Extra Video</h3>
   </div>
 
   <form class="form" enctype="multipart/form-data" method="post">
     <div class="modal-body">
-      <div id="video_new_errors" class="alert alert-error">
-      </div>
-
+      <div id="video_new_errors" class="alert alert-error"></div>
       <input class="span5" id="video_title" name="video[title]" placeholder="The Video title" type="text">
       <input class="video_pic_field" name="video[pic]" style="display:none" type="file">
       <textarea class="span5" id="video_script" name="video[script]" placeholder="The Video script" rows="4"></textarea>
