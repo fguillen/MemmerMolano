@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <% @performances.each do |performance| %>
-      <tr data-id="<%= performance.id %>">
+      <tr id="performance_<%= performance.id %>" data-id="<%= performance.id %>">
         <td class="span1"><div class="handle"><i class="icon-th-list"></i></div>
         <td class="span1"><%= performance.id %></td>
         <td class="span8"><%= link_to performance.title, edit_admin_performance_path(performance) %></td>

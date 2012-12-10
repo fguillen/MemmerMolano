@@ -5,7 +5,7 @@
     <div id="performance_form_details_errors" class="alert alert-error" style="display:none"></div>
     <%= f.text_field :title, :class => "span12", :placeholder => "Title of the Performance" %>
     <%= f.text_area :text, :class => "span12 mdm-input", :rows => "10", :placeholder => "Description of the Performance" %>
-    <%= f.submit "Update", :class => "btn btn-primary pull-right" %>
+    <%= f.submit "Update", :class => "btn btn-primary pull-right", :id => "button_details" %>
   <% end %>
 
   <script>
@@ -72,7 +72,7 @@
           <div id="performance_form_video_errors" class="alert alert-error" style="display:none"></div>
           <%= f.text_area :video_script, :class => "span4", :rows => "6", :placeholder => "The video script" %>
           <%= f.text_area :video_text, :class => "span4 mdm-input", :rows => "7", :placeholder => "The video description" %>
-          <%= f.submit "Update", :class => "btn btn-primary pull-right" %>
+          <%= f.submit "Update", :class => "btn btn-primary pull-right", :id => "button_video" %>
         </div>
       <% end %>
     </div>

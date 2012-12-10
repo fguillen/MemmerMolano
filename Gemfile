@@ -14,6 +14,8 @@ group :development do
 end
 
 group :test do
+  gem "database_cleaner"
+  gem "capybara"
   gem "factory_girl", "4.0.0"
   gem "mocha", :require => false
 end

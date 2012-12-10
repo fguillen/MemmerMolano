@@ -35,6 +35,11 @@
     <script src="/assets/bandb_back.js" type="text/javascript" charset="utf-8"></script>
     <script src="/assets/bandb_back_video_extras.js" type="text/javascript" charset="utf-8"></script>
 
+    <% if Rails.env.test? %>
+      <!-- Selenium staff -->
+      <script src="/assets/jquery.simulate.drag-sortable.js" type="text/javascript" charset="utf-8"></script>
+    <% end %>
+
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
