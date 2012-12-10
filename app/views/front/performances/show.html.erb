@@ -1,19 +1,23 @@
 <div class="element performance">
   <h1><%= @performance.title %></h1>
   <div id="gallery">
-    <div class="slider-wrapper theme-default">
-      <div id="slider" class="nivo_slider_performance">
-        <% @performance.pics.by_position.each do |pic| %>
-          <%= image_tag pic.thumb(:slider) %>
-        <% end %>
+    <% if !@performance.pics.empty? %>
+      <div class="slider-wrapper theme-default">
+        <div id="slider" class="nivo_slider_performance">
+          <% @performance.pics.by_position.each do |pic| %>
+            <%= image_tag pic.thumb(:slider) %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
   <div id="related_links">
     <%= link_to "Link to video", video_front_performance_path(@performance) %> |
     <%= link_to "Link to extras", extras_front_performance_path(@performance) %>
   </div>
   <div id="text">
-    <%= @performance.text.to_md %>
+    <% if @performance.text %>
+      <%= @performance.text.to_md %>
+    <% end %>
   </div>
 </div>

@@ -29,4 +29,27 @@ class VideoTest < ActiveSupport::TestCase
 
     assert_equal(11, video_2.position)
   end
+
+  def test_to_param
+    video = FactoryGirl.create(:video, :title => "This is the title", :pic => File.new(fixture("/images/extras1.jpg")))
+    assert_equal("#{video.id}-this-is-the-title", video.to_param)
+  end
+
+  def test_to_json
+    video =
+      FactoryGirl.create(
+        :video,
+        :pic => File.new(fixture("/images/extras1.jpg")),
+        :title => "Wadus title",
+        :text => "Wadus text",
+        :script => "Wadus script"
+      )
+
+    video_json = video.to_json
+    assert_equal("Wadus title", video_json["title"])
+    assert_equal("Wadus text", video_json["text"])
+    assert_equal("Wadus script", video_json["script"])
+    assert_match("/uploads/test/videos/pic_#{video.id}_slider.jpg", video_json["pic_url"])
+    assert_equal("/front/performances/#{video.performance.id}-performance-title/videos/#{video.id}-wadus-title", video_json["video_url"])
+  end
 end

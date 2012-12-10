@@ -29,4 +29,9 @@ class PerformanceTest < ActiveSupport::TestCase
 
     assert_equal(11, performance_2.position)
   end
+
+  def test_to_param
+    performance = FactoryGirl.create(:performance, :title => "This is the title")
+    assert_equal("#{performance.id}-this-is-the-title", performance.to_param)
+  end
 end

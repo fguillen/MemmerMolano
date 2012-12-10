@@ -24,12 +24,12 @@ class Video < ActiveRecord::Base
 
   def to_json
     {
-      :id => id,
-      :pic_url => pic(:slider),
-      :video_url => Rails.application.routes.url_helpers.front_performance_video_path(self.performance, self),
-      :title => title,
-      :text => text,
-      :script => script
+      "id" => id,
+      "pic_url" => pic(:slider),
+      "video_url" => Rails.application.routes.url_helpers.front_performance_video_path(self.performance, self),
+      "title" => title,
+      "text" => text,
+      "script" => script
     }
   end
 

@@ -15,7 +15,6 @@ class Pic < ActiveRecord::Base
     :url => "/uploads/:rails_env/performances/pic_:id_:style.:extension"
   )
 
-
   validates_attachment_presence :thumb
 
   scope :by_position, order("position asc")

@@ -1,13 +1,17 @@
 <div class="element video">
   <h1><%= @performance.title %> – Video</h1>
   <div id="video">
-    <%= @performance.video_script.html_safe %>
+    <% if @performance.video_script %>
+      <%= @performance.video_script.html_safe %>
+    <% end %>
   </div>
   <div id="related_links">
     <%= link_to "Link to performance", [:front, @performance] %> |
     <%= link_to "Link to extras", extras_front_performance_path(@performance) %>
   </div>
   <div id="text">
-    <%= @performance.video_text.to_md %>
+    <% if @performance.video_text %>
+      <%= @performance.video_text.to_md %>
+    <% end %>
   </div>
 </div>
