@@ -22,4 +22,11 @@ class Pic < ActiveRecord::Base
   def initialize_position
     self.position ||= Pic.by_position.last ? Pic.by_position.last.position + 1 : 1
   end
+
+  def to_json
+    {
+      "id" => id,
+      "file_url" => thumb(:admin)
+    }
+  end
 end

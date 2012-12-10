@@ -79,7 +79,7 @@ class Admin::PerformancesControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal("application/json", response.content_type)
-    assert_equal("ok", JSON.parse(response.body)["state"])
+    assert_equal("ok", JSON.parse(response.body)["status"])
 
     performance.reload
     assert_equal("Wadus Title", performance.title)
@@ -107,6 +107,10 @@ class Admin::PerformancesControllerTest < ActionController::TestCase
       :reorder,
       :ids => [performance_2, performance_1].map(&:id)
     )
+
+    assert_response :success
+    assert_equal("application/json", response.content_type)
+    assert_equal("ok", JSON.parse(response.body)["status"])
 
     performance_1.reload
     performance_2.reload

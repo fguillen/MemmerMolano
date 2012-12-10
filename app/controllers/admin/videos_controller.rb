@@ -12,7 +12,7 @@ class Admin::VideosController < Admin::AdminController
     if video.save
       render :json => video.to_json
     else
-      render :json => { :errors => video.errors.full_messages }
+      render :json => { "errors" => video.errors.full_messages }
     end
   end
 
@@ -22,7 +22,7 @@ class Admin::VideosController < Admin::AdminController
     if video.update_attributes(params[:video])
       render :json => video.to_json
     else
-      render :json => { :errors => video.errors.full_messages }
+      render :json => { "errors" => video.errors.full_messages }
     end
   end
 
@@ -30,14 +30,14 @@ class Admin::VideosController < Admin::AdminController
     @video = @performance.videos.find(params[:id])
     @video.destroy
 
-    render :json => { :state => "ok" }
+    render :json => { "status" => "ok" }
   end
 
   def reorder
     params[:ids].each_with_index do |id, index|
       @performance.videos.update_all(["position=?", index], ["id=?", id])
     end
-    render :json => { :status => "ok" }
+    render :json => { "status" => "ok" }
   end
 
   private

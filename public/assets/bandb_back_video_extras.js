@@ -36,9 +36,6 @@ $(function(){
   };
 
   VideoExtrasApp.Video = Backbone.Model.extend({
-    initialize: function(){
-      if( !this.get( "state" ) ) this.set( "state", "completed" );
-    },
   });
 
   VideoExtrasApp.Videos = Backbone.Collection.extend({

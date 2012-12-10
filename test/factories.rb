@@ -7,6 +7,7 @@ FactoryGirl.define do
 
   factory :video do
     title "Video title"
+    pic { File.new("#{Rails.root}/test/fixtures/images/extras1.jpg") }
     association :performance
     script "video_script"
     text "Video Text"
@@ -14,5 +15,6 @@ FactoryGirl.define do
 
   factory :pic do
     association :performance
+    thumb { File.new("#{Rails.root}/test/fixtures/images/1.jpg") }
   end
 end

@@ -25,9 +25,9 @@ class Admin::PerformancesController < Admin::AdminController
     @performance = Performance.find(params[:id])
 
     if @performance.update_attributes(params[:performance])
-      render :json => { :state => "ok" }
+      render :json => { "status" => "ok" }
     else
-      render :json => { :errors => @performance.errors.full_messages }
+      render :json => { "errors" => @performance.errors.full_messages }
     end
   end
 

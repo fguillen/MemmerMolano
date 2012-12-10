@@ -3,25 +3,25 @@ class Admin::PicsController < Admin::AdminController
 
   def index
     @pics = @performance.pics.by_position
-    render :json => @pics.map { |e| { :file_url => e.thumb(:admin), :id => e.id } }
+    render :json => @pics.map(&:to_json)
   end
 
   def create
     @pic = @performance.pics.create!(:thumb => params[:file])
-    render :json => { :file_url => @pic.thumb(:admin), :id => @pic.id }
+    render :json => @pic.to_json
   end
 
   def destroy
     @pic = @performance.pics.find(params[:id])
     @pic.destroy
-    render :json => { :state => "ok" }
+    render :json => { "status" => "ok" }
   end
 
   def reorder
     params[:ids].each_with_index do |id, index|
       @performance.pics.update_all(["position=?", index], ["id=?", id])
     end
-    render :json => { :status => "ok" }
+    render :json => { "status" => "ok" }
   end
 
   private

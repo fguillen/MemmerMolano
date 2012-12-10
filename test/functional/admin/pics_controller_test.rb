@@ -32,26 +32,28 @@ class Admin::PicsControllerTest < ActionController::TestCase
 
   def test_destroy
     performance = FactoryGirl.create(:performance)
-    pic = FactoryGirl.create(:pic, :performance => performance, :thumb => File.new(fixture("/images/2.jpg")))
+    pic = FactoryGirl.create(:pic, :performance => performance)
 
-    delete(
-      :destroy,
-      :performance_id => performance,
-      :id => pic
-    )
+    assert_difference "Pic.count", -1 do
+      delete(
+        :destroy,
+        :performance_id => performance,
+        :id => pic
+      )
+    end
 
     assert_response :success
     assert_equal("application/json", response.content_type)
-    assert_equal("ok", JSON.parse(response.body)["state"])
+    assert_equal("ok", JSON.parse(response.body)["status"])
 
     assert !Pic.exists?(pic.id)
   end
 
   def test_reorder
     performance = FactoryGirl.create(:performance)
-    pic_1 = FactoryGirl.create(:pic, :position => 1, :performance => performance, :thumb => File.new(fixture("/images/2.jpg")))
-    pic_2 = FactoryGirl.create(:pic, :position => 2,:performance => performance, :thumb => File.new(fixture("/images/2.jpg")))
-    pic_3 = FactoryGirl.create(:pic, :position => 3,:performance => performance, :thumb => File.new(fixture("/images/2.jpg")))
+    pic_1 = FactoryGirl.create(:pic, :position => 1, :performance => performance)
+    pic_2 = FactoryGirl.create(:pic, :position => 2, :performance => performance)
+    pic_3 = FactoryGirl.create(:pic, :position => 3, :performance => performance)
 
     performance.reload
     assert_equal([pic_1, pic_2, pic_3].map(&:id), performance.pics.by_position.map(&:id))
@@ -62,7 +64,12 @@ class Admin::PicsControllerTest < ActionController::TestCase
       :ids => [pic_2, pic_3, pic_1].map(&:id)
     )
 
+    assert_response :success
+    assert_equal("application/json", response.content_type)
+    assert_equal("ok", JSON.parse(response.body)["status"])
+
     performance.reload
     assert_equal([pic_2, pic_3, pic_1].map(&:id), performance.pics.by_position.map(&:id))
   end
+
 end
