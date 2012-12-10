@@ -1,9 +1,12 @@
 <% title "New Performance" %>
 
 <%= form_for [:admin, @performance] do |f| %>
-  <%= f.error_messages %>
+  <%= render "/admin/shared/form_errors", :object => f.object %>
   <p>
     <%= f.text_field :title, :class => "span12", :placeholder => "Title of the Performance" %>
+  </p>
+  <p class="pull-right">
+    <%= f.submit "Create Performance", :class => "btn btn-primary" %>
   </p>
 <% end %>
 

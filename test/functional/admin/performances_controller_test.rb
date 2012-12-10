@@ -50,12 +50,17 @@ class Admin::PerformancesControllerTest < ActionController::TestCase
   def test_update_invalid
     performance = FactoryGirl.create(:performance)
 
-    Performance.any_instance.stubs(:valid?).returns(false)
+    put(
+      :update,
+      :id => performance,
+      :performance => {
+        :title => ""
+      }
+    )
 
-    put :update, :id => performance
-
-    assert_template "edit"
-    assert_not_nil(flash[:alert])
+    assert_response :success
+    assert_equal("application/json", response.content_type)
+    assert_equal(1, JSON.parse(response.body)["errors"].length)
   end
 
   def test_update_valid
@@ -72,8 +77,9 @@ class Admin::PerformancesControllerTest < ActionController::TestCase
       }
     )
 
-    assert_redirected_to edit_admin_performance_path(performance)
-    assert_not_nil(flash[:notice])
+    assert_response :success
+    assert_equal("application/json", response.content_type)
+    assert_equal("ok", JSON.parse(response.body)["state"])
 
     performance.reload
     assert_equal("Wadus Title", performance.title)
@@ -91,5 +97,21 @@ class Admin::PerformancesControllerTest < ActionController::TestCase
     assert_not_nil(flash[:notice])
 
     assert !Performance.exists?(performance.id)
+  end
+
+  def test_reorder
+    performance_1 = FactoryGirl.create(:performance, :position => 10)
+    performance_2 = FactoryGirl.create(:performance, :position => 20)
+
+    post(
+      :reorder,
+      :ids => [performance_2, performance_1].map(&:id)
+    )
+
+    performance_1.reload
+    performance_2.reload
+
+    assert_equal(1, performance_1.position)
+    assert_equal(0, performance_2.position)
   end
 end

@@ -14,6 +14,19 @@ body {
   z-index: 100;
 }
 
+.footer {
+  padding: 20px;
+  margin-top: 70px;
+  border-top: 1px solid #E5E5E5;
+  background-color: whiteSmoke;
+}
+
+
+h2 {
+  margin-top: 60px;
+  border-bottom: 3px solid #ccc;
+}
+
 .video_extras .video_form {
   margin-bottom: 20px;
 }

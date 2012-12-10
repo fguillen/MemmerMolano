@@ -88,9 +88,9 @@
 
   <%= render :partial => "/admin/performances/video_extras", :locals => { :performance => @performance } %>
 
-  <p>
+  <div class="footer">
     <%= link_to "Show", [:front, @performance], :target => "_blank" %> |
     <%= link_to "View All", admin_performances_path %> |
     <%= link_to "Remove Performance", [:admin, @performance], :method => :delete, :class => "btn btn-mini btn-danger", :confirm => "Are you sure?" %>
-  </p>
+  </div>
 </div>

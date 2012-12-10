@@ -10,7 +10,7 @@ class Admin::PerformancesController < Admin::AdminController
   def create
     @performance = Performance.new(params[:performance])
     if @performance.save
-      redirect_to edit_admin_performance_path(@performance), :notice => "Successfully created performance."
+      redirect_to edit_admin_performance_path(@performance), :notice => "Successfully created performance, now you can add the rest of the details."
     else
       flash.now[:alert] = "Some errors trying to create the Performance."
       render :action => "new"
