@@ -7,11 +7,8 @@ class Admin::PerformancesReorderIntegrationTestTest < ActionDispatch::Integratio
     performance_3 = FactoryGirl.create(:performance)
 
     visit admin_performances_path
-    sleep 3
 
     page.execute_script %{ $("tr##{performance_2.id}").simulateDragSortable({ move: 1, handle: ".handle" }); }
-
-    sleep 2000
 
     performance_1.reload
     performance_2.reload
