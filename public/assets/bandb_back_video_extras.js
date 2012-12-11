@@ -145,7 +145,10 @@ $(function(){
       _.bindAll( this, "parseResponse" );
       this.formAction = this.options.model.get("id") ? "PUT" : "POST"
       niceFileField(this.$el.find(".video_pic_field"));
-      this.fillFormFields()
+      this.fillFormFields();
+      this.resetFieldsAtSuccess = this.options.model.get("id") ? false : true;
+
+      console.log( "this.resetFieldsAtSuccess", this.resetFieldsAtSuccess );
     },
 
     fillFormFields: function(){
@@ -157,6 +160,15 @@ $(function(){
         this.$el.find(".video_form_label").html("Update Extra Video");
         this.$el.find(".submit").val("Update Extra Video");
       }
+    },
+
+    emptyFormFields: function(){
+      console.log( "emptyFormFields" );
+      this.$el.find("#video_title").val( "" );
+      this.$el.find("#video_pic").val( "" );
+      this.$el.find(".nice_file_field input").val( "" );
+      this.$el.find("#video_script").val( "" );
+      this.$el.find("#video_text").val( "" );
     },
 
     sendData: function( event ){
@@ -194,6 +206,11 @@ $(function(){
         this.$el.modal("hide");
         this.options.model.set( data );
         this.options.collection.add( this.options.model );
+
+        if( this.resetFieldsAtSuccess ) {
+          this.emptyFormFields();
+          this.options.model = new VideoExtrasApp.Video();
+        }
       }
     }
 

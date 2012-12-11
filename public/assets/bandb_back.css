@@ -69,6 +69,10 @@ h2 {
   display: none;
 }
 
+.video_extras #video_pic {
+  display: none;
+}
+
 .clear {
   clear: boths;
 }

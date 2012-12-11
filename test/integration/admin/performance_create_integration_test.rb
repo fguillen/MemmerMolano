@@ -1,5 +1,5 @@
 
-require 'test_helper'
+require "test_helper"
 
 class Admin::PerformanceCreateIntegrationTestTest < ActionDispatch::IntegrationTest
   def test_create_performance

@@ -1,8 +1,10 @@
 <div class="video_extras">
   <h2>Extra Videos</h2>
   <p>
-    <a href="#video_form" class="btn btn-primary" data-toggle="modal">New Extra Video</a>
-    <%= render :partial => "/admin/videos/form", :locals => { :performance => performance } %>
+    <a href="#video_form" class="btn" data-toggle="modal" id="btn_new_extra_video">Add New Extra Video</a>
+    <div id="video_form_new">
+      <%= render :partial => "/admin/videos/form", :locals => { :performance => performance } %>
+    </div>
   </p>
 
   <div class="list">
@@ -10,20 +12,25 @@
 </div>
 
 <script type="text/template" id="video_template">
-  <div class="thumbnail">
-    <div class="handle"><i class="icon-th-list"></i></div>
-    <img src="{{pic_url}}" />
-    <div class="caption">
-      <a href="{{video_url}}" target="_blank">See the Video</a>
-      <h3>{{title}}</h3>
-      <p>{{text}}</p>
-      <p>
-        <a href="#video_form_{{id}}" class="update btn" data-toggle="modal">Update</a>
-        <a href="#delete" class="delete btn btn-danger">Remove</a>
-      </p>
+  <div id="video_extra_{{id}}">
+    <div class="thumbnail">
+      <div class="handle"><i class="icon-th-list"></i></div>
+      <img src="{{pic_url}}" />
+      <div class="caption">
+        <a href="{{video_url}}" target="_blank">See the Video</a>
+        <h3 class="video_extra_title">{{title}}</h3>
+        <p>{{text}}</p>
+        <p>
+          <a href="#video_form_{{id}}" class="update btn" data-toggle="modal">Update</a>
+          <a href="#delete" class="delete btn btn-danger">Remove</a>
+        </p>
+      </div>
+    </div>
+
+    <div id="video_form_{{id}}">
+      <%= render :partial => "/admin/videos/form", :locals => { :performance => performance } %>
     </div>
   </div>
-  <%= render :partial => "/admin/videos/form", :locals => { :performance => performance } %>
 </script>
 
 <script>

@@ -22,6 +22,7 @@ class ActionDispatch::IntegrationTest
 
   def setup
     Capybara.current_driver = Capybara.javascript_driver # :selenium by default
+    Capybara.default_selector = :css
   end
 
   def teardown
@@ -29,4 +30,22 @@ class ActionDispatch::IntegrationTest
     Capybara.reset_sessions!    # Forget the (simulated) browser state
     Capybara.use_default_driver # Revert Capybara.current_driver to Capybara.default_driver
   end
+
+  def performance_create_new_extra_video(opts = {})
+    opts =
+      opts.reverse_merge(
+        :title => "Video title",
+        :pic => "/images/extras1.jpg",
+        :script => "Video script",
+        :text => "Video text"
+      )
+
+    click_link "Add New Extra Video"
+    find("#video_form_new #video_title").set(opts[:title])
+    find("#video_form_new #video_pic").set(fixture(opts[:pic]))
+    find("#video_form_new #video_script").set(opts[:script])
+    find("#video_form_new #video_text").set(opts[:text])
+    find("#video_form_new .submit").click
+  end
+
 end
