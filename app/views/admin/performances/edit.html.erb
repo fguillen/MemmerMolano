@@ -1,10 +1,14 @@
 <% title "Edit Performance" %>
 
+<div id="performance_show_link" class="pull-right">
+  <%= link_to "Show the performance", [:front, @performance], :target => "_blank" %>
+</div>
+
 <div id="performance_form">
   <%= form_for [:admin, @performance], :html => { :id => "performance_form_details" } do |f| %>
     <div id="performance_form_details_errors" class="alert alert-error" style="display:none"></div>
     <%= f.text_field :title, :class => "span12", :placeholder => "Title of the Performance" %>
-    <%= f.text_area :text, :class => "span12 mdm-input", :rows => "10", :placeholder => "Description of the Performance" %>
+    <%= f.text_area :text, :class => "span12 mdm-input", :rows => "15", :placeholder => "Description of the Performance" %>
     <%= f.submit "Update", :class => "btn btn-primary pull-right", :id => "button_details" %>
   <% end %>
 
@@ -61,19 +65,12 @@
 
   <div class="video_main">
     <h2>Main Video</h2>
-    <div class="video_form main row">
-      <%= form_for [:admin, @performance], :html => { :id => "performance_form_video" } do |f| %>
-        <div class="video_player span8">
-          <% if @performance.video_script %>
-            <%= @performance.video_script.html_safe %>
-          <% end %>
-        </div>
-        <div class="video_details span4">
-          <div id="performance_form_video_errors" class="alert alert-error" style="display:none"></div>
-          <%= f.text_area :video_script, :class => "span4", :rows => "6", :placeholder => "The video script" %>
-          <%= f.text_area :video_text, :class => "span4 mdm-input", :rows => "7", :placeholder => "The video description" %>
-          <%= f.submit "Update", :class => "btn btn-primary pull-right", :id => "button_video" %>
-        </div>
+    <div class="video_form main">
+      <%= form_for [:admin, @performance], :html => { :id => "performance_form_video", :class => "form" } do |f| %>
+        <div id="performance_form_video_errors" class="alert alert-error" style="display:none"></div>
+        <%= f.text_area :video_script, :class => "span6", :rows => "6", :placeholder => "The video script" %>
+        <%= f.text_area :video_text, :class => "span6 mdm-input", :rows => "7", :placeholder => "The video description" %>
+        <%= f.submit "Update", :class => "btn btn-primary pull-right", :id => "button_video" %>
       <% end %>
     </div>
 
@@ -89,8 +86,6 @@
   <%= render :partial => "/admin/performances/video_extras", :locals => { :performance => @performance } %>
 
   <div class="footer">
-    <%= link_to "Show", [:front, @performance], :target => "_blank" %> |
-    <%= link_to "View All", admin_performances_path %> |
     <%= link_to "Remove Performance", [:admin, @performance], :method => :delete, :class => "btn btn-mini btn-danger", :confirm => "Are you sure?" %>
   </div>
 </div>

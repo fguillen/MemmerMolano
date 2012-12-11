@@ -16,7 +16,7 @@ $(function(){
 });
 
 function niceFileField( file_field ){
-  file_field.after("<div class=\"nice_file_field input-append\"><input class=\"input span4\" type=\"text\"><a class=\"btn\">Browse</a></div>");
+  file_field.after("<div class=\"nice_file_field input-append\"><input class=\"input span4\" type=\"text\"><a class=\"btn\">Browse Thumbnail</a></div>");
 
   var nice_file_field = file_field.next(".nice_file_field");
   nice_file_field.find("a").click( function(){ file_field.click() });

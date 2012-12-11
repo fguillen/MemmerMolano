@@ -98,6 +98,12 @@ li.active a {
   text-decoration: none;
 }
 
+/* performance */
+
+.element #text p {
+  margin-bottom: 10px;
+}
+
 
 /* extras */
 

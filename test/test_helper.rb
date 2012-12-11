@@ -41,11 +41,11 @@ class ActionDispatch::IntegrationTest
       )
 
     click_link "Add New Extra Video"
-    find("#video_form_new #video_title").set(opts[:title])
-    find("#video_form_new #video_pic").set(fixture(opts[:pic]))
-    find("#video_form_new #video_script").set(opts[:script])
-    find("#video_form_new #video_text").set(opts[:text])
-    find("#video_form_new .submit").click
+    find("#video_popup_new #video_title").set(opts[:title])
+    find("#video_popup_new #video_pic").set(fixture(opts[:pic]))
+    find("#video_popup_new #video_script").set(opts[:script])
+    find("#video_popup_new #video_text").set(opts[:text])
+    find("#video_popup_new .submit").click
   end
 
 end

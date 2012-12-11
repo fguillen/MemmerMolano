@@ -21,6 +21,11 @@ body {
   background-color: whiteSmoke;
 }
 
+/* performance edit */
+#performance_show_link {
+  margin-top: -40px;
+}
+
 
 h2 {
   margin-top: 60px;
@@ -71,6 +76,15 @@ h2 {
 
 .video_extras #video_pic {
   display: none;
+}
+
+.video_extras form input,
+.video_extras form textarea {
+  width: 518px;
+}
+
+.video_extras form .nice_file_field input {
+  width: 374px;
 }
 
 .clear {

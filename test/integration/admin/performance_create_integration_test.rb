@@ -31,25 +31,5 @@ class Admin::PerformanceCreateIntegrationTestTest < ActionDispatch::IntegrationT
     performance.reload
     assert_equal("Video script", performance.video_script)
     assert_equal("Video description", performance.video_text)
-
-    # Extra Video
-    click_link "New Extra Video"
-    fill_in "video_title", :with => "Video title"
-
-    page.execute_script %{ $("#video_pic").css({ display: "block" }); }
-    attach_file "video_pic", fixture("/images/extras1.jpg")
-    page.execute_script %{ $("#video_pic").css({ display: "none" }); }
-
-    fill_in "video_script", :with => "Video script"
-    fill_in "video_text", :with => "Video description"
-    click_button "Create the new Extra Video"
-
-    sleep 1
-    video = Video.last
-    assert_equal("Video title", video.title)
-
-    page.has_content?("<h3>Video title</h3>")
-
-
   end
 end

@@ -2,7 +2,7 @@
   <h2>Extra Videos</h2>
   <p>
     <a href="#video_form" class="btn" data-toggle="modal" id="btn_new_extra_video">Add New Extra Video</a>
-    <div id="video_form_new">
+    <div id="video_popup_new">
       <%= render :partial => "/admin/videos/form", :locals => { :performance => performance } %>
     </div>
   </p>
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div id="video_form_{{id}}">
+    <div id="video_popup_{{id}}">
       <%= render :partial => "/admin/videos/form", :locals => { :performance => performance } %>
     </div>
   </div>

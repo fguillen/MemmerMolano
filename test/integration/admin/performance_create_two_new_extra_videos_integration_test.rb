@@ -29,9 +29,9 @@ class Admin::PerformanceCreateTwoNewExtraVideosIntegrationTestTest < ActionDispa
 
     # second open
     click_link "Add New Extra Video"
-    assert_equal( "", find("#video_form_new #video_title").value)
-    assert_equal( "", find("#video_form_new #video_pic").value)
-    assert_equal( "", find("#video_form_new #video_script").value)
-    assert_equal( "", find("#video_form_new #video_text").value)
+    assert_equal( "", find("#video_popup_new #video_title").value)
+    assert_equal( "", find("#video_popup_new #video_pic").value)
+    assert_equal( "", find("#video_popup_new #video_script").value)
+    assert_equal( "", find("#video_popup_new #video_text").value)
   end
 end
