@@ -34,4 +34,36 @@ class PerformanceTest < ActiveSupport::TestCase
     performance = FactoryGirl.create(:performance, :title => "This is the title")
     assert_equal("#{performance.id}-this-is-the-title", performance.to_param)
   end
+
+  def test_validation_by_form_section
+    performance = FactoryGirl.build(:performance, :title => nil, :text => nil, :video_script => nil, :video_text => nil)
+    assert_equal(true, performance.valid?)
+
+    performance = FactoryGirl.build(:performance, :form_section => "new", :title => nil, :text => nil, :video_script => nil, :video_text => nil)
+    assert_equal(false, performance.valid?)
+
+    performance = FactoryGirl.build(:performance, :form_section => "new", :title => "the title", :text => nil, :video_script => nil, :video_text => nil)
+    assert_equal(true, performance.valid?)
+
+    performance = FactoryGirl.build(:performance, :form_section => "details", :title => "the title", :text => nil, :video_script => nil, :video_text => nil)
+    assert_equal(false, performance.valid?)
+
+    performance = FactoryGirl.build(:performance, :form_section => "details", :title => nil, :text => "the text", :video_script => nil, :video_text => nil)
+    assert_equal(false, performance.valid?)
+
+    performance = FactoryGirl.build(:performance, :form_section => "details", :title => "the title", :text => "the text", :video_script => nil, :video_text => nil)
+    assert_equal(true, performance.valid?)
+
+    performance = FactoryGirl.build(:performance, :form_section => "video_main", :title => nil, :text => nil, :video_script => nil, :video_text => nil)
+    assert_equal(false, performance.valid?)
+
+    performance = FactoryGirl.build(:performance, :form_section => "video_main", :title => nil, :text => nil, :video_script => "video script", :video_text => nil)
+    assert_equal(false, performance.valid?)
+
+    performance = FactoryGirl.build(:performance, :form_section => "video_main", :title => nil, :text => nil, :video_script => nil, :video_text => "video text")
+    assert_equal(false, performance.valid?)
+
+    performance = FactoryGirl.build(:performance, :form_section => "video_main", :title => nil, :text => nil, :video_script => "video script", :video_text => "video text")
+    assert_equal(true, performance.valid?)
+  end
 end

@@ -32,6 +32,19 @@ h2 {
   border-bottom: 3px solid #ccc;
 }
 
+
+/* main video */
+.video_main .performance_video_script {
+  float: left;
+}
+
+.video_main .performance_video_text {
+  float: left;
+  margin-left: 20px;
+}
+
+/* video extras */
+
 .video_extras .video_form {
   margin-bottom: 20px;
 }

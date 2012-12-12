@@ -54,6 +54,7 @@ class Admin::PerformancesControllerTest < ActionController::TestCase
       :update,
       :id => performance,
       :performance => {
+        :form_section => "details"
         :title => ""
       }
     )

@@ -1,8 +1,6 @@
 FactoryGirl.define do
   factory :performance do
     title "Performance Title"
-    text "Performance Text"
-    video_script "video_script"
   end
 
   factory :video do

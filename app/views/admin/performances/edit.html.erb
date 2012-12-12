@@ -6,6 +6,8 @@
 
 <div id="performance_form">
   <%= form_for [:admin, @performance], :html => { :id => "performance_form_details" } do |f| %>
+    <%= hidden_field_tag "performance[form_section]", "details" %>
+
     <div id="performance_form_details_errors" class="alert alert-error" style="display:none"></div>
     <%= f.text_field :title, :class => "span12", :placeholder => "Title of the Performance" %>
     <%= f.text_area :text, :class => "span12 mdm-input", :rows => "15", :placeholder => "Description of the Performance" %>
@@ -66,11 +68,20 @@
   <div class="video_main">
     <h2>Main Video</h2>
     <div class="video_form main">
+      <p><%= link_to "See the Main Video", video_front_performance_path( @performance ), :target => "_blank" %></p>
+
       <%= form_for [:admin, @performance], :html => { :id => "performance_form_video", :class => "form" } do |f| %>
+        <%= hidden_field_tag "performance[form_section]", "video_main" %>
         <div id="performance_form_video_errors" class="alert alert-error" style="display:none"></div>
-        <%= f.text_area :video_script, :class => "span6", :rows => "6", :placeholder => "The video script" %>
-        <%= f.text_area :video_text, :class => "span6 mdm-input", :rows => "7", :placeholder => "The video description" %>
-        <%= f.submit "Update", :class => "btn btn-primary pull-right", :id => "button_video" %>
+        <div class="performance_video_script" class="span6">
+          <%= f.text_area :video_script, :class => "span6", :rows => "6", :placeholder => "The video script" %>
+        </div>
+        <div class="performance_video_text" class="span6">
+          <%= f.text_area :video_text, :class => "span6 mdm-input", :rows => "7", :placeholder => "The video description" %>
+        </div>
+        <div class="performance_video_controls" class="span12">
+          <%= f.submit "Update", :class => "btn btn-primary pull-right", :id => "button_video" %>
+        </div>
       <% end %>
     </div>
 
