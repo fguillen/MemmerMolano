@@ -1,0 +1,1 @@
+[done] When video_extra update the MarkDown styles are not reseted

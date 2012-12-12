@@ -92,8 +92,9 @@ h2 {
 }
 
 .video_extras form input,
-.video_extras form textarea {
-  width: 518px;
+.video_extras form textarea,
+.video_extras form .mdm-preview {
+  width: 518px !important;
 }
 
 .video_extras form .nice_file_field input {

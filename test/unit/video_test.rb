@@ -41,13 +41,14 @@ class VideoTest < ActiveSupport::TestCase
         :video,
         :pic => File.new(fixture("/images/extras1.jpg")),
         :title => "Wadus title",
-        :text => "Wadus text",
+        :text => "Wadus **text**",
         :script => "Wadus script"
       )
 
     video_json = video.to_json
     assert_equal("Wadus title", video_json["title"])
-    assert_equal("Wadus text", video_json["text"])
+    assert_equal("Wadus **text**", video_json["text"])
+    assert_equal("<p>Wadus <strong>text</strong></p>", video_json["text_md"])
     assert_equal("Wadus script", video_json["script"])
     assert_match("/uploads/test/videos/pic_#{video.id}_slider.jpg", video_json["pic_url"])
     assert_equal("/front/performances/#{video.performance.id}-performance-title/videos/#{video.id}-wadus-title", video_json["video_url"])

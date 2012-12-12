@@ -29,6 +29,7 @@ class Video < ActiveRecord::Base
       "video_url" => Rails.application.routes.url_helpers.front_performance_video_path(self.performance, self),
       "title" => title,
       "text" => text,
+      "text_md" => text.to_md,
       "script" => script
     }
   end
