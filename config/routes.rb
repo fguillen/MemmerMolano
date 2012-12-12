@@ -1,7 +1,11 @@
 BedAndBreakfast::Application.routes.draw do
+
+
   root :to => "front/performances#last"
 
   namespace :front do
+    resources :pages, :only => [:show]
+
     resources :performances, :only => [:show] do
       get :last, :on => :collection
       get :extras, :on => :member

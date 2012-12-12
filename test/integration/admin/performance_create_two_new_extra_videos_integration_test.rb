@@ -27,6 +27,8 @@ class Admin::PerformanceCreateTwoNewExtraVideosIntegrationTestTest < ActionDispa
 
     performance_create_new_extra_video
 
+    sleep 1
+
     # second open
     click_link "Add New Extra Video"
     assert_equal( "", find("#video_popup_new #video_title").value)
