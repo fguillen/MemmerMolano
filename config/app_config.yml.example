@@ -1,0 +1,11 @@
+development:
+  user: user
+  pass: pass
+
+test:
+  user: user
+  pass: pass
+
+production:
+  user: user
+  pass: pass

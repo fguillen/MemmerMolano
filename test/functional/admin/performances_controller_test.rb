@@ -54,14 +54,14 @@ class Admin::PerformancesControllerTest < ActionController::TestCase
       :update,
       :id => performance,
       :performance => {
-        :form_section => "details"
+        :form_section => "details",
         :title => ""
       }
     )
 
     assert_response :success
     assert_equal("application/json", response.content_type)
-    assert_equal(1, JSON.parse(response.body)["errors"].length)
+    assert_equal(2, JSON.parse(response.body)["errors"].length)
   end
 
   def test_update_valid

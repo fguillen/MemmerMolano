@@ -17,3 +17,4 @@ pickle-email-*.html
 /etc/secret
 coverage
 /public/uploads/
+/config/app_config.yml
