@@ -38,13 +38,18 @@ li.active a {
 
 #menu > ul ul {
   padding: 0;
-  margin-left: 36px;
+  margin-left: 22px;
+  margin-bottom: 10px;
   font-size: 14px;
 }
 
 #menu li {
   margin: 0;
   list-style: none;
+}
+
+#menu li.about a {
+  color: black;
 }
 
 #menu a {

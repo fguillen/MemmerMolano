@@ -13,7 +13,7 @@
     <link href="/assets/nivo-slider/themes/default/default.css" type="text/css" media="screen" rel="stylesheet"/>
     <link href="/assets/nivo-slider/nivo-slider.css" type="text/css" media="screen" rel="stylesheet"/>
 
-    <!-- BandB -->
+    <!-- MnM -->
     <link href="/assets/reset.css" rel="stylesheet">
     <link href="/assets/bandb_front.css" rel="stylesheet">
     <script src="/assets/bandb_front.js" type="text/javascript" charset="utf-8"></script>
@@ -45,7 +45,7 @@
             </ul>
           </li>
 
-          <li><%= link_to "About", front_page_path( "about" ) %></li>
+          <li class="about"><%= link_to "About", front_page_path( "about" ) %></li>
         </ul>
       </div>
 
@@ -55,10 +55,22 @@
         </div>
 
         <div id="footer">
-          Contact: <a href="#">hello@bedandbreakfast.perf</a>
+          Contact: <a href="mailto:hello@memmermolano.com">hello@memmermolano.com</a>
         </div>
       </div>
     </div>
 
+    <!-- analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8925836-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </body>
 </html>
