@@ -8,11 +8,9 @@ gem "paperclip", "~> 3.0"
 gem "bluecloth", "~> 2.2.0"
 gem "faker"
 gem "exception_notification"
-gem "rvm-capistrano", "1.3.0.rc1"
 
 group :development do
   gem "nifty-generators"
-  gem "capistrano"
 end
 
 group :test do
