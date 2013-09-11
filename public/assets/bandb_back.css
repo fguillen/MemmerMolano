@@ -98,7 +98,7 @@ h2 {
 }
 
 .video_extras form .nice_file_field input {
-  width: 374px;
+  width: 374px !important;
 }
 
 .clear {
