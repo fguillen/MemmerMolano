@@ -20,3 +20,27 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+## Docker
+
+### Install server basics
+    ./server_setup.sh
+
+### Restore backups
+
+Go to S3 to get the backups
+
+    docker exec -i ef76e80ed43e mysql -uroot -proot hpq < /tmp/hpq.20180629.daily.sql
+    mv /tmp/public/paperclip/production/* /var/apps/MemmerMolano/public/paperclip/production/
+
+### Redeploy
+
+    ssh root@memmermolano.com
+    cd /var/apps/MemmerMolano
+    git pull
+    docker-compose restart app
+    docker-compose restart web
+
+### Consoling
+
+    docker-compose exec app bundle exec rails c
+    docker-compose exec db mysql -uroot -p hpq

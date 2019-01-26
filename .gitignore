@@ -17,4 +17,9 @@ pickle-email-*.html
 /etc/secret
 coverage
 /public/uploads/
-/config/app_config.yml
+/db/data
+.env
+.env.staging
+.env.production
+.env.development.local
+.env.*.local
