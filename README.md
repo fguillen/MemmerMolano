@@ -25,6 +25,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ### Install server basics
     ./server_setup.sh
 
+
+### Activate SweetyBacky
+
+    vim /root/secret/.s3.passwd # set the S3 credentials
+    chmod -R 600 /root/secret/
+    apt-get install ruby-all-dev build-essential zlib1g-dev mysql-client
+    gem install "sweety_backy"
+    crontab -l | { cat; echo "50 22 * * * /bin/bash -l -c '/usr/local/bin/sweety_backy /var/apps/MemmerMolano/config/sweety_backy.conf >> /tmp/sweety_backy.MemmerMolano.log 2>&1'"; } | crontab -
+
 ### Restore backups
 
 Go to S3 to get the backups
